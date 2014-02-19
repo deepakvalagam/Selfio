@@ -7,6 +7,7 @@
 //
 
 #import "SFAppDelegate.h"
+#import "SFCameraViewController.h"
 
 @implementation SFAppDelegate
 
@@ -14,6 +15,14 @@
 {
     self.window = [[UIWindow alloc] initWithFrame:[[UIScreen mainScreen] bounds]];
     // Override point for customization after application launch.
+    
+    SFCameraViewController *cameraViewController = [[SFCameraViewController alloc] initWithNibName:@"SFCameraViewController" bundle:nil];
+    
+    UINavigationController *navController = [[UINavigationController alloc] initWithRootViewController:cameraViewController];
+    navController.navigationBarHidden = YES;
+    
+    self.window.rootViewController = navController;
+    
     self.window.backgroundColor = [UIColor whiteColor];
     [self.window makeKeyAndVisible];
     return YES;
