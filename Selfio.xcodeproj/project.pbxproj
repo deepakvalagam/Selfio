@@ -203,6 +203,23 @@
 		0A758B0C18AF9D4D007B28FD /* SFImageGalleryCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 0A758B0B18AF9D4D007B28FD /* SFImageGalleryCell.m */; };
 		0A758B0E18AF9D87007B28FD /* SFImageGalleryCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 0A758B0D18AF9D87007B28FD /* SFImageGalleryCell.xib */; };
 		0A758B1518AFA27A007B28FD /* SFGalleryManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 0A758B1418AFA27A007B28FD /* SFGalleryManager.m */; };
+		0AE1E9EF18B61D8C003536FF /* FXImageView.m in Sources */ = {isa = PBXBuildFile; fileRef = 0AE1E9EC18B61D8C003536FF /* FXImageView.m */; };
+		0AE1E9F018B61D8C003536FF /* UIImage+FX.m in Sources */ = {isa = PBXBuildFile; fileRef = 0AE1E9EE18B61D8C003536FF /* UIImage+FX.m */; };
+		0AE1EA0A18B61EE0003536FF /* UIImage+ImageEffects.m in Sources */ = {isa = PBXBuildFile; fileRef = 0AE1EA0118B61EE0003536FF /* UIImage+ImageEffects.m */; };
+		0AE1EA0B18B61EE0003536FF /* UILabel+Resize.m in Sources */ = {isa = PBXBuildFile; fileRef = 0AE1EA0318B61EE0003536FF /* UILabel+Resize.m */; };
+		0AE1EA0C18B61EE0003536FF /* UINavigationController+Portrait.m in Sources */ = {isa = PBXBuildFile; fileRef = 0AE1EA0518B61EE0003536FF /* UINavigationController+Portrait.m */; };
+		0AE1EA0D18B61EE0003536FF /* UITableView+CellAnimation.m in Sources */ = {isa = PBXBuildFile; fileRef = 0AE1EA0718B61EE0003536FF /* UITableView+CellAnimation.m */; };
+		0AE1EA0E18B61EE0003536FF /* UIView+LoadNIb.m in Sources */ = {isa = PBXBuildFile; fileRef = 0AE1EA0918B61EE0003536FF /* UIView+LoadNIb.m */; };
+		0AE1EA1218B63156003536FF /* SFFiltersViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 0AE1EA1018B63156003536FF /* SFFiltersViewController.m */; };
+		0AE1EA1318B63156003536FF /* SFFiltersViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 0AE1EA1118B63156003536FF /* SFFiltersViewController.xib */; };
+		0AE1EA1618B633A0003536FF /* SFImageData.m in Sources */ = {isa = PBXBuildFile; fileRef = 0AE1EA1518B633A0003536FF /* SFImageData.m */; };
+		0AE1EA2018B637C0003536FF /* Apple.acv in Resources */ = {isa = PBXBuildFile; fileRef = 0AE1EA1918B637C0003536FF /* Apple.acv */; };
+		0AE1EA2118B637C0003536FF /* Banana.acv in Resources */ = {isa = PBXBuildFile; fileRef = 0AE1EA1A18B637C0003536FF /* Banana.acv */; };
+		0AE1EA2218B637C0003536FF /* Grapes.acv in Resources */ = {isa = PBXBuildFile; fileRef = 0AE1EA1B18B637C0003536FF /* Grapes.acv */; };
+		0AE1EA2318B637C0003536FF /* Lemon.acv in Resources */ = {isa = PBXBuildFile; fileRef = 0AE1EA1C18B637C0003536FF /* Lemon.acv */; };
+		0AE1EA2418B637C0003536FF /* Mango.acv in Resources */ = {isa = PBXBuildFile; fileRef = 0AE1EA1D18B637C0003536FF /* Mango.acv */; };
+		0AE1EA2518B637C0003536FF /* Orange.acv in Resources */ = {isa = PBXBuildFile; fileRef = 0AE1EA1E18B637C0003536FF /* Orange.acv */; };
+		0AE1EA2618B637C0003536FF /* Watermelon.acv in Resources */ = {isa = PBXBuildFile; fileRef = 0AE1EA1F18B637C0003536FF /* Watermelon.acv */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -613,6 +630,32 @@
 		0A758B0D18AF9D87007B28FD /* SFImageGalleryCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = SFImageGalleryCell.xib; sourceTree = "<group>"; };
 		0A758B1318AFA27A007B28FD /* SFGalleryManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SFGalleryManager.h; sourceTree = "<group>"; };
 		0A758B1418AFA27A007B28FD /* SFGalleryManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SFGalleryManager.m; sourceTree = "<group>"; };
+		0AE1E9EB18B61D8C003536FF /* FXImageView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FXImageView.h; sourceTree = "<group>"; };
+		0AE1E9EC18B61D8C003536FF /* FXImageView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FXImageView.m; sourceTree = "<group>"; };
+		0AE1E9ED18B61D8C003536FF /* UIImage+FX.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIImage+FX.h"; sourceTree = "<group>"; };
+		0AE1E9EE18B61D8C003536FF /* UIImage+FX.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIImage+FX.m"; sourceTree = "<group>"; };
+		0AE1EA0018B61EE0003536FF /* UIImage+ImageEffects.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIImage+ImageEffects.h"; sourceTree = "<group>"; };
+		0AE1EA0118B61EE0003536FF /* UIImage+ImageEffects.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIImage+ImageEffects.m"; sourceTree = "<group>"; };
+		0AE1EA0218B61EE0003536FF /* UILabel+Resize.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UILabel+Resize.h"; sourceTree = "<group>"; };
+		0AE1EA0318B61EE0003536FF /* UILabel+Resize.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UILabel+Resize.m"; sourceTree = "<group>"; };
+		0AE1EA0418B61EE0003536FF /* UINavigationController+Portrait.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UINavigationController+Portrait.h"; sourceTree = "<group>"; };
+		0AE1EA0518B61EE0003536FF /* UINavigationController+Portrait.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UINavigationController+Portrait.m"; sourceTree = "<group>"; };
+		0AE1EA0618B61EE0003536FF /* UITableView+CellAnimation.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UITableView+CellAnimation.h"; sourceTree = "<group>"; };
+		0AE1EA0718B61EE0003536FF /* UITableView+CellAnimation.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UITableView+CellAnimation.m"; sourceTree = "<group>"; };
+		0AE1EA0818B61EE0003536FF /* UIView+LoadNIb.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIView+LoadNIb.h"; sourceTree = "<group>"; };
+		0AE1EA0918B61EE0003536FF /* UIView+LoadNIb.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIView+LoadNIb.m"; sourceTree = "<group>"; };
+		0AE1EA0F18B63156003536FF /* SFFiltersViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SFFiltersViewController.h; sourceTree = "<group>"; };
+		0AE1EA1018B63156003536FF /* SFFiltersViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SFFiltersViewController.m; sourceTree = "<group>"; };
+		0AE1EA1118B63156003536FF /* SFFiltersViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = SFFiltersViewController.xib; sourceTree = "<group>"; };
+		0AE1EA1418B633A0003536FF /* SFImageData.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SFImageData.h; sourceTree = "<group>"; };
+		0AE1EA1518B633A0003536FF /* SFImageData.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SFImageData.m; sourceTree = "<group>"; };
+		0AE1EA1918B637C0003536FF /* Apple.acv */ = {isa = PBXFileReference; lastKnownFileType = file; path = Apple.acv; sourceTree = "<group>"; };
+		0AE1EA1A18B637C0003536FF /* Banana.acv */ = {isa = PBXFileReference; lastKnownFileType = file; path = Banana.acv; sourceTree = "<group>"; };
+		0AE1EA1B18B637C0003536FF /* Grapes.acv */ = {isa = PBXFileReference; lastKnownFileType = file; path = Grapes.acv; sourceTree = "<group>"; };
+		0AE1EA1C18B637C0003536FF /* Lemon.acv */ = {isa = PBXFileReference; lastKnownFileType = file; path = Lemon.acv; sourceTree = "<group>"; };
+		0AE1EA1D18B637C0003536FF /* Mango.acv */ = {isa = PBXFileReference; lastKnownFileType = file; path = Mango.acv; sourceTree = "<group>"; };
+		0AE1EA1E18B637C0003536FF /* Orange.acv */ = {isa = PBXFileReference; lastKnownFileType = file; path = Orange.acv; sourceTree = "<group>"; };
+		0AE1EA1F18B637C0003536FF /* Watermelon.acv */ = {isa = PBXFileReference; lastKnownFileType = file; path = Watermelon.acv; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -688,6 +731,8 @@
 		0A03CBEE18AD334300BF48FC /* Selfio */ = {
 			isa = PBXGroup;
 			children = (
+				0AE1EA1718B637C0003536FF /* Resources */,
+				0AE1E9FE18B61EE0003536FF /* Utility */,
 				0A758B1218AFA27A007B28FD /* Model */,
 				0A758B0818AF9D4D007B28FD /* Views */,
 				0A03CC2218AD34B600BF48FC /* Components */,
@@ -735,6 +780,9 @@
 				0A03CC1D18AD34B000BF48FC /* SFCameraViewController.h */,
 				0A03CC1E18AD34B000BF48FC /* SFCameraViewController.m */,
 				0A03CC1F18AD34B000BF48FC /* SFCameraViewController.xib */,
+				0AE1EA0F18B63156003536FF /* SFFiltersViewController.h */,
+				0AE1EA1018B63156003536FF /* SFFiltersViewController.m */,
+				0AE1EA1118B63156003536FF /* SFFiltersViewController.xib */,
 				0A758AFB18AF9AFA007B28FD /* SFImageGalleryViewController.h */,
 				0A758AFC18AF9AFA007B28FD /* SFImageGalleryViewController.m */,
 				0A758AFD18AF9AFA007B28FD /* SFImageGalleryViewController.xib */,
@@ -745,6 +793,7 @@
 		0A03CC2218AD34B600BF48FC /* Components */ = {
 			isa = PBXGroup;
 			children = (
+				0AE1E9EA18B61D8C003536FF /* FXImageView */,
 				0A758AF418AEA043007B28FD /* iCarousel */,
 				0A03CC2318AD34B600BF48FC /* GPUImage */,
 			);
@@ -1180,8 +1229,68 @@
 			children = (
 				0A758B1318AFA27A007B28FD /* SFGalleryManager.h */,
 				0A758B1418AFA27A007B28FD /* SFGalleryManager.m */,
+				0AE1EA1418B633A0003536FF /* SFImageData.h */,
+				0AE1EA1518B633A0003536FF /* SFImageData.m */,
 			);
 			path = Model;
+			sourceTree = "<group>";
+		};
+		0AE1E9EA18B61D8C003536FF /* FXImageView */ = {
+			isa = PBXGroup;
+			children = (
+				0AE1E9EB18B61D8C003536FF /* FXImageView.h */,
+				0AE1E9EC18B61D8C003536FF /* FXImageView.m */,
+				0AE1E9ED18B61D8C003536FF /* UIImage+FX.h */,
+				0AE1E9EE18B61D8C003536FF /* UIImage+FX.m */,
+			);
+			path = FXImageView;
+			sourceTree = "<group>";
+		};
+		0AE1E9FE18B61EE0003536FF /* Utility */ = {
+			isa = PBXGroup;
+			children = (
+				0AE1E9FF18B61EE0003536FF /* Categories */,
+			);
+			path = Utility;
+			sourceTree = "<group>";
+		};
+		0AE1E9FF18B61EE0003536FF /* Categories */ = {
+			isa = PBXGroup;
+			children = (
+				0AE1EA0018B61EE0003536FF /* UIImage+ImageEffects.h */,
+				0AE1EA0118B61EE0003536FF /* UIImage+ImageEffects.m */,
+				0AE1EA0218B61EE0003536FF /* UILabel+Resize.h */,
+				0AE1EA0318B61EE0003536FF /* UILabel+Resize.m */,
+				0AE1EA0418B61EE0003536FF /* UINavigationController+Portrait.h */,
+				0AE1EA0518B61EE0003536FF /* UINavigationController+Portrait.m */,
+				0AE1EA0618B61EE0003536FF /* UITableView+CellAnimation.h */,
+				0AE1EA0718B61EE0003536FF /* UITableView+CellAnimation.m */,
+				0AE1EA0818B61EE0003536FF /* UIView+LoadNIb.h */,
+				0AE1EA0918B61EE0003536FF /* UIView+LoadNIb.m */,
+			);
+			path = Categories;
+			sourceTree = "<group>";
+		};
+		0AE1EA1718B637C0003536FF /* Resources */ = {
+			isa = PBXGroup;
+			children = (
+				0AE1EA1818B637C0003536FF /* FilterPresets */,
+			);
+			path = Resources;
+			sourceTree = "<group>";
+		};
+		0AE1EA1818B637C0003536FF /* FilterPresets */ = {
+			isa = PBXGroup;
+			children = (
+				0AE1EA1918B637C0003536FF /* Apple.acv */,
+				0AE1EA1A18B637C0003536FF /* Banana.acv */,
+				0AE1EA1B18B637C0003536FF /* Grapes.acv */,
+				0AE1EA1C18B637C0003536FF /* Lemon.acv */,
+				0AE1EA1D18B637C0003536FF /* Mango.acv */,
+				0AE1EA1E18B637C0003536FF /* Orange.acv */,
+				0AE1EA1F18B637C0003536FF /* Watermelon.acv */,
+			);
+			path = FilterPresets;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -1305,13 +1414,21 @@
 				0A03CD8C18AD34B900BF48FC /* GPUImageTests-Info.plist in Resources */,
 				0A03CD9218AD34B900BF48FC /* lookup_soft_elegance_2.png in Resources */,
 				0A03CBF318AD334300BF48FC /* InfoPlist.strings in Resources */,
+				0AE1EA2218B637C0003536FF /* Grapes.acv in Resources */,
 				0A03CD9118AD34B900BF48FC /* lookup_soft_elegance_1.png in Resources */,
 				0A03CD8B18AD34B900BF48FC /* InfoPlist.strings in Resources */,
+				0AE1EA2518B637C0003536FF /* Orange.acv in Resources */,
+				0AE1EA2418B637C0003536FF /* Mango.acv in Resources */,
+				0AE1EA1318B63156003536FF /* SFFiltersViewController.xib in Resources */,
 				0A03CD8E18AD34B900BF48FC /* lookup.png in Resources */,
 				0A03CD9018AD34B900BF48FC /* lookup_miss_etikate.png in Resources */,
 				0A03CC2118AD34B000BF48FC /* SFCameraViewController.xib in Resources */,
 				0A758AFF18AF9AFA007B28FD /* SFImageGalleryViewController.xib in Resources */,
+				0AE1EA2018B637C0003536FF /* Apple.acv in Resources */,
+				0AE1EA2118B637C0003536FF /* Banana.acv in Resources */,
+				0AE1EA2618B637C0003536FF /* Watermelon.acv in Resources */,
 				0A03CBFB18AD334300BF48FC /* Images.xcassets in Resources */,
+				0AE1EA2318B637C0003536FF /* Lemon.acv in Resources */,
 				0A758B0E18AF9D87007B28FD /* SFImageGalleryCell.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -1356,6 +1473,7 @@
 				0A03CDC918AD34B900BF48FC /* GPUImageHazeFilter.m in Sources */,
 				0A03CDA418AD34B900BF48FC /* GPUImageChromaKeyFilter.m in Sources */,
 				0A03CE1918AD34B900BF48FC /* GPUImageTextureOutput.m in Sources */,
+				0AE1E9F018B61D8C003536FF /* UIImage+FX.m in Sources */,
 				0A03CE0118AD34B900BF48FC /* GPUImageRGBDilationFilter.m in Sources */,
 				0A03CE2418AD34B900BF48FC /* GPUImageTwoPassFilter.m in Sources */,
 				0A03CDEC18AD34B900BF48FC /* GPUImageMultiplyBlendFilter.m in Sources */,
@@ -1375,6 +1493,7 @@
 				0A03CE0218AD34B900BF48FC /* GPUImageRGBErosionFilter.m in Sources */,
 				0A03CDCA18AD34B900BF48FC /* GPUImageHighlightShadowFilter.m in Sources */,
 				0A03CD9E18AD34B900BF48FC /* GPUImageBrightnessFilter.m in Sources */,
+				0AE1EA0C18B61EE0003536FF /* UINavigationController+Portrait.m in Sources */,
 				0A03CDFB18AD34B900BF48FC /* GPUImagePolkaDotFilter.m in Sources */,
 				0A03CDC718AD34B900BF48FC /* GPUImageHardLightBlendFilter.m in Sources */,
 				0A03CDB418AD34B900BF48FC /* GPUimageDirectionalSobelEdgeDetectionFilter.m in Sources */,
@@ -1389,6 +1508,7 @@
 				0A03CDE718AD34B900BF48FC /* GPUImageMosaicFilter.m in Sources */,
 				0A03CDA618AD34B900BF48FC /* GPUImageColorBlendFilter.m in Sources */,
 				0A758AFE18AF9AFA007B28FD /* SFImageGalleryViewController.m in Sources */,
+				0AE1EA0A18B61EE0003536FF /* UIImage+ImageEffects.m in Sources */,
 				0A03CE0818AD34B900BF48FC /* GPUImageSepiaFilter.m in Sources */,
 				0A03CDA318AD34B900BF48FC /* GPUImageChromaKeyBlendFilter.m in Sources */,
 				0A03CD9D18AD34B900BF48FC /* GPUImageBoxBlurFilter.m in Sources */,
@@ -1397,6 +1517,7 @@
 				0A03CDCB18AD34B900BF48FC /* GPUImageHighPassFilter.m in Sources */,
 				0A03CE0D18AD34B900BF48FC /* GPUImageSmoothToonFilter.m in Sources */,
 				0A03CDD718AD34B900BF48FC /* GPUImageLaplacianFilter.m in Sources */,
+				0AE1EA1218B63156003536FF /* SFFiltersViewController.m in Sources */,
 				0A03CDDE18AD34B900BF48FC /* GPUImageLowPassFilter.m in Sources */,
 				0A03CDAF18AD34B900BF48FC /* GPUImageCrosshatchFilter.m in Sources */,
 				0A03CD9318AD34B900BF48FC /* GLProgram.m in Sources */,
@@ -1414,6 +1535,7 @@
 				0A03CDE818AD34B900BF48FC /* GPUImageMotionBlurFilter.m in Sources */,
 				0A03CE0B18AD34B900BF48FC /* GPUImageSingleComponentGaussianBlurFilter.m in Sources */,
 				0A03CD9918AD34B900BF48FC /* GPUImageAmatorkaFilter.m in Sources */,
+				0AE1EA0E18B61EE0003536FF /* UIView+LoadNIb.m in Sources */,
 				0A758AF718AEA043007B28FD /* iCarousel.m in Sources */,
 				0A03CDEF18AD34B900BF48FC /* GPUImageNormalBlendFilter.m in Sources */,
 				0A03CDDF18AD34B900BF48FC /* GPUImageLuminanceRangeFilter.m in Sources */,
@@ -1422,8 +1544,10 @@
 				0A03CD9518AD34B900BF48FC /* GPUImage3x3TextureSamplingFilter.m in Sources */,
 				0A758B1518AFA27A007B28FD /* SFGalleryManager.m in Sources */,
 				0A03CE2C18AD34B900BF48FC /* GPUImageWhiteBalanceFilter.m in Sources */,
+				0AE1EA1618B633A0003536FF /* SFImageData.m in Sources */,
 				0A03CDB818AD34B900BF48FC /* GPUImageErosionFilter.m in Sources */,
 				0A03CDAA18AD34B900BF48FC /* GPUImageColorMatrixFilter.m in Sources */,
+				0AE1EA0D18B61EE0003536FF /* UITableView+CellAnimation.m in Sources */,
 				0A03CDF918AD34B900BF48FC /* GPUImagePoissonBlendFilter.m in Sources */,
 				0A03CDB718AD34B900BF48FC /* GPUImageEmbossFilter.m in Sources */,
 				0A03CE1018AD34B900BF48FC /* GPUImageSoftLightBlendFilter.m in Sources */,
@@ -1450,10 +1574,12 @@
 				0A03CD9818AD34B900BF48FC /* GPUImageAlphaBlendFilter.m in Sources */,
 				0A03CE2118AD34B900BF48FC /* GPUImageTransformFilter.m in Sources */,
 				0A03CE0018AD34B900BF48FC /* GPUImageRGBClosingFilter.m in Sources */,
+				0AE1E9EF18B61D8C003536FF /* FXImageView.m in Sources */,
 				0A03CBF918AD334300BF48FC /* SFAppDelegate.m in Sources */,
 				0A03CDA518AD34B900BF48FC /* GPUImageClosingFilter.m in Sources */,
 				0A03CDBA18AD34B900BF48FC /* GPUImageExposureFilter.m in Sources */,
 				0A03CDFA18AD34B900BF48FC /* GPUImagePolarPixellateFilter.m in Sources */,
+				0AE1EA0B18B61EE0003536FF /* UILabel+Resize.m in Sources */,
 				0A03CDCF18AD34B900BF48FC /* GPUImageHSBFilter.m in Sources */,
 				0A03CDF418AD34B900BF48FC /* GPUImageParallelCoordinateLineTransformFilter.m in Sources */,
 				0A03CDCC18AD34B900BF48FC /* GPUImageHistogramFilter.m in Sources */,
@@ -1625,6 +1751,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "";
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(SDKROOT)/Developer/Library/Frameworks",
@@ -1640,7 +1767,7 @@
 				);
 				INFOPLIST_FILE = "Selfio/Selfio-Info.plist";
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE = "874C3CC5-6872-4860-BF96-72CADA398A70";
+				PROVISIONING_PROFILE = "3236C8D1-DD28-4F99-A387-5E1567EB21EF";
 				WRAPPER_EXTENSION = app;
 			};
 			name = Debug;
@@ -1650,6 +1777,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "";
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(SDKROOT)/Developer/Library/Frameworks",
@@ -1665,7 +1793,7 @@
 				);
 				INFOPLIST_FILE = "Selfio/Selfio-Info.plist";
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE = "874C3CC5-6872-4860-BF96-72CADA398A70";
+				PROVISIONING_PROFILE = "3236C8D1-DD28-4F99-A387-5E1567EB21EF";
 				WRAPPER_EXTENSION = app;
 			};
 			name = Release;

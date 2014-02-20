@@ -8,6 +8,7 @@
 
 #import <Foundation/Foundation.h>
 #import <AssetsLibrary/AssetsLibrary.h>
+#import "SFImageData.h"
 
 #define GALLERY_NAME @"Selfio"
 
@@ -23,6 +24,9 @@ typedef enum {
 @property (nonatomic, strong) NSMutableArray *assetPhotos;
 @property (nonatomic) BOOL displayLatestPhotoFirst;
 
+/*Latest photo taken */
+@property (nonatomic, strong) SFImageData *photo;
+
 + (instancetype)sharedManager;
 
 - (NSInteger)photosCount;
@@ -31,6 +35,8 @@ typedef enum {
 
 - (UIImage *)latestImage;
 
-- (void)saveImagetoAlbum:(NSData *)imageData metadata:(NSDictionary *)metadata completionBlock:(void(^)())completionBlock;
+- (void)saveImagetoAlbumWithCompletionBlock:(void(^)())completionBlock;
+
+- (void)flushData;
 
 @end

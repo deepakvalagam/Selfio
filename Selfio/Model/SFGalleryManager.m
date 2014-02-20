@@ -206,14 +206,23 @@
     return [self imageAtIndex:0 imageType:SFImageTypeThumbnail];
 }
 
-- (void)saveImagetoAlbum:(NSData *)imageData metadata:(NSDictionary *)metadata completionBlock:(void(^)())completionBlock
+- (void)saveImagetoAlbumWithCompletionBlock:(void(^)())completionBlock
 {
-    [self.assetsLibrary writeImageDataToSavedPhotosAlbum:imageData metadata:metadata completionBlock:^(NSURL *assetURL, NSError *error) {
+    
+    __weak SFGalleryManager *weakSelf = self;
+    
+    [self.assetsLibrary writeImageDataToSavedPhotosAlbum:self.photo.jpegData metadata:self.photo.metaData completionBlock:^(NSURL *assetURL, NSError *error) {
         
         [self addAssetURL:assetURL toAlbum:GALLERY_NAME completionBlock:^{
             completionBlock();
+            [weakSelf flushData];
         }];
     }];
+}
+
+- (void)flushData
+{
+    self.photo = nil;
 }
 
 @end

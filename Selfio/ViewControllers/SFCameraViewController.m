@@ -12,6 +12,10 @@
 #import <AudioToolbox/AudioToolbox.h>
 #import "SFImageGalleryViewController.h"
 #import "SFGalleryManager.h"
+#import "UIImage+FX.h"
+#import "UIImage+ImageEffects.h"
+#import "SFFiltersViewController.h"
+#import "SFImageData.h"
 
 #define RADIANS_TO_DEGREES(x) (180/M_PI)*x
 
@@ -20,10 +24,12 @@ static int const thresholdAngle = 170;
 @interface SFCameraViewController ()
 
 @property (weak, nonatomic) IBOutlet GPUImageView *cameraPreview;
+@property (weak, nonatomic) IBOutlet UIImageView *blurredImageView;
 @property (weak, nonatomic) IBOutlet UIButton *tapButton;
 @property (weak, nonatomic) IBOutlet UIImageView *finalImageView;
 @property (weak, nonatomic) IBOutlet UIView *containerView;
 @property (weak, nonatomic) IBOutlet UILabel *flipLabel;
+@property (weak, nonatomic) IBOutlet UIActivityIndicatorView *spinner;
 @property (weak, nonatomic) IBOutlet UIButton *latestImageButton;
 
 @property (nonatomic, strong) SFGalleryManager *galleryManager;
@@ -40,9 +46,6 @@ static int const thresholdAngle = 170;
     GPUImageGammaFilter *defaultFilter;
     BOOL didFlip;
     BOOL didCameraRotate;
-    
-    NSData *finalImageData;
-    NSDictionary *finalImageMetaData;
 }
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
@@ -61,16 +64,20 @@ static int const thresholdAngle = 170;
     [super viewDidLoad];
     // Do any additional setup after loading the view from its nib.
     
-    stillCamera = [[GPUImageStillCamera alloc] init];
-    stillCamera.outputImageOrientation = UIInterfaceOrientationPortrait;
-    [stillCamera addTarget:self.cameraPreview];
-    [stillCamera rotateCamera];
-    stillCamera.jpegCompressionQuality = 0.9;
-    [stillCamera startCameraCapture];
+    [self.cameraPreview setFrame:CGRectMake(0, 0, self.view.frame.size.width, self.view.frame.size.height)];
+    [self.cameraPreview setContentMode:UIViewContentModeCenter];
     
     defaultFilter = [[GPUImageGammaFilter alloc] init];
+    
+    //TODO: Tweak the quality
+    stillCamera = [[GPUImageStillCamera alloc] initWithSessionPreset:AVCaptureSessionPresetHigh cameraPosition:AVCaptureDevicePositionFront];
+    stillCamera.outputImageOrientation = UIInterfaceOrientationPortrait;
+    stillCamera.jpegCompressionQuality = 0.9;
+    
     [stillCamera addTarget:defaultFilter];
     
+    [stillCamera addTarget:self.cameraPreview];
+    [stillCamera startCameraCapture];
     motionManager = [[CMMotionManager alloc] init];
     
     if (!motionManager.isDeviceMotionAvailable) {
@@ -82,11 +89,11 @@ static int const thresholdAngle = 170;
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(orientationChanged:) name:UIDeviceOrientationDidChangeNotification object:nil];
     
     [self.cameraPreview setTransform:CGAffineTransformMakeScale(-1, 1)];
+    [self.blurredImageView setTransform:CGAffineTransformMakeScale(-1, 1)];
     
     [self startMotionUpdates];
     
-    [_latestImageButton.imageView setContentMode:UIViewContentModeScaleAspectFit];
-    [self updateLatestThumbnailImage];
+    [self setupLatestImageView];
     
 }
 
@@ -104,6 +111,15 @@ static int const thresholdAngle = 170;
 }
 
 #pragma mark - Custom Methods
+
+- (void)setupLatestImageView
+{
+    [self.latestImageButton.imageView setContentMode:UIViewContentModeScaleAspectFit];
+    
+    [self updateLatestThumbnailImage];
+    
+    self.latestImageButton.layer.cornerRadius = self.latestImageButton.bounds.size.width/2;
+}
 
 - (void)startMotionUpdates
 {
@@ -125,7 +141,12 @@ static int const thresholdAngle = 170;
                 
                 if (!didCameraRotate && fabs(degreesRotated) > 90) {
                     didCameraRotate = YES;
+                    
                     [stillCamera rotateCamera];
+                    [stillCamera addTarget:defaultFilter];
+                    [stillCamera startCameraCapture];
+                    stillCamera.captureSessionPreset = AVCaptureSessionPresetPhoto;
+                    
                     [self.cameraPreview setTransform:CGAffineTransformMakeScale(1, 1)];
                     self.flipLabel.alpha = 0;
                 }
@@ -144,12 +165,18 @@ static int const thresholdAngle = 170;
                         
                         [stillCamera capturePhotoAsJPEGProcessedUpToFilter:defaultFilter withCompletionHandler:^(NSData *processedJPEG, NSError *error) {
                             
-                            finalImageData = processedJPEG;
-                            finalImageMetaData = stillCamera.currentCaptureMetadata;
+                            self.galleryManager.photo = [[SFImageData alloc] initWithJpegData:processedJPEG andMetadata:stillCamera.currentCaptureMetadata];
                             
-                            self.finalImageView.image = [UIImage imageWithData:processedJPEG];
+                            runOnMainQueueWithoutDeadlocking(^{
+                                self.blurredImageView.image = nil;
+                                
+                                UIImage *scaledImage = [[UIImage imageWithData:processedJPEG] imageScaledToFitSize:CGSizeMake(self.view.frame.size.width, self.view.frame.size.height)];
+                                
+                                self.finalImageView.image = scaledImage;
+                                
+                                [self showImage];
+                            });
                             
-                            [self showImage];
                             
                             NSLog(@"DONE");
                             
@@ -174,6 +201,9 @@ static int const thresholdAngle = 170;
 
 - (void)showImage
 {
+    [stillCamera removeAllTargets];
+    [stillCamera stopCameraCapture];
+    
     self.view.userInteractionEnabled = YES;
     self.containerView.hidden = NO;
     
@@ -200,13 +230,20 @@ static int const thresholdAngle = 170;
     [UIView animateWithDuration:0.2 animations:^{
         self.tapButton.alpha = 1;
     }];
+    
     self.cameraPreview.hidden = NO;
     [self.cameraPreview setTransform:CGAffineTransformMakeScale(-1, 1)];
     
+    self.blurredImageView.image = nil;
+    self.blurredImageView.alpha = 0;
+    
     self.view.userInteractionEnabled = YES;
     
-    
+    stillCamera.captureSessionPreset = AVCaptureSessionPresetHigh;
     [stillCamera rotateCamera];
+    [stillCamera addTarget:self.cameraPreview];
+    [stillCamera addTarget:defaultFilter];
+    [stillCamera startCameraCapture];
 }
 
 - (void)resetValues
@@ -224,10 +261,9 @@ static int const thresholdAngle = 170;
 {
     UIDeviceOrientation deviceOrientation = [[UIDevice currentDevice] orientation];
     
-    NSLog(@"Orientation - %ld", deviceOrientation);
+    NSLog(@"Orientation - %d", deviceOrientation);
     
     //TODO: Rotate the view Controls
-    
 }
 
 
@@ -235,7 +271,32 @@ static int const thresholdAngle = 170;
 
 - (IBAction)buttonTapped:(id)sender
 {
+    //Take pic and blur
+    [stillCamera capturePhotoAsJPEGProcessedUpToFilter:defaultFilter withCompletionHandler:^(NSData *processedJPEG, NSError *error) {
+       
+        DLog(@"KiloBYTES : %d", processedJPEG.length/1000);
+        DLog(@"Size : %@", NSStringFromCGSize([UIImage imageWithData:processedJPEG].size));
+        
+        UIImage *scaledImage = [[UIImage imageWithData:processedJPEG] imageScaledToFitSize:CGSizeMake(self.view.frame.size.width, self.view.frame.size.height)];
+        UIImage *blurredImage = [scaledImage applyBlurWithRadius:5.0 tintColor:[UIColor colorWithWhite:1.0 alpha:0.3] saturationDeltaFactor:1.8 maskImage:nil];
+        
+        runOnMainQueueWithoutDeadlocking(^{
+            
+            self.blurredImageView.image =  blurredImage;
+            
+            [UIView animateWithDuration:0.3 animations:^{
+                self.blurredImageView.alpha = 1;
+            }];
+            
+            [stillCamera stopCameraCapture];
+            [stillCamera removeAllTargets];
+        });
+        
+        DLog(@"FREEZE");
+        
+    }];
     
+    //Take Reference attitude
     referenceAttitude = motionManager.deviceMotion.attitude;
     
     [UIView animateWithDuration:0.2 animations:^{
@@ -264,9 +325,13 @@ static int const thresholdAngle = 170;
 
 - (IBAction)yesTapped:(id)sender
 {
-    [_galleryManager saveImagetoAlbum:finalImageData metadata:finalImageMetaData completionBlock:^{
+    [self.spinner startAnimating];
+    
+    [self.galleryManager saveImagetoAlbumWithCompletionBlock:^{
         
         dispatch_async(dispatch_get_main_queue(), ^{
+            
+            [self.spinner stopAnimating];
             
             [UIView animateWithDuration:0.2 animations:^{
                 self.containerView.alpha = 0;

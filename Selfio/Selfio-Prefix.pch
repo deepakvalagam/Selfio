@@ -14,3 +14,26 @@
     #import <UIKit/UIKit.h>
     #import <Foundation/Foundation.h>
 #endif
+
+/* Device */
+#define IS_IPHONE (UI_USER_INTERFACE_IDIOM() == UIUserInterfaceIdiomPhone)
+#define IS_IPHONE_5 ( [ [ UIScreen mainScreen ] bounds ].size.height == 568 )
+
+/* iOS Version */
+#define SYSTEM_VERSION_EQUAL_TO(v)                  ([[[UIDevice currentDevice] systemVersion] compare:v options:NSNumericSearch] == NSOrderedSame)
+#define SYSTEM_VERSION_GREATER_THAN(v)              ([[[UIDevice currentDevice] systemVersion] compare:v options:NSNumericSearch] == NSOrderedDescending)
+#define SYSTEM_VERSION_GREATER_THAN_OR_EQUAL_TO(v)  ([[[UIDevice currentDevice] systemVersion] compare:v options:NSNumericSearch] != NSOrderedAscending)
+#define SYSTEM_VERSION_LESS_THAN(v)                 ([[[UIDevice currentDevice] systemVersion] compare:v options:NSNumericSearch] == NSOrderedAscending)
+#define SYSTEM_VERSION_LESS_THAN_OR_EQUAL_TO(v)     ([[[UIDevice currentDevice] systemVersion] compare:v options:NSNumericSearch] != NSOrderedDescending)
+
+#ifdef DEBUG
+#   define DLog(fmt, ...) NSLog((@"%s [Line %d] " fmt), __PRETTY_FUNCTION__, __LINE__, ##__VA_ARGS__);
+#   define ELog(err) {if(err) DLog(@"%@", err)}
+
+#define MARK_FUNCTION_ENTERING DLog(@"Entering: %s", __PRETTY_FUNCTION__);
+#define MARK_FUNCTION_EXITING DLog(@"Leaving: %s", __PRETTY_FUNCTION__);
+
+#else
+#   define DLog(...)
+#   define ELog(err)
+#endif
