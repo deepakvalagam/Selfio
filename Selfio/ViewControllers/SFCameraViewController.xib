@@ -1,16 +1,18 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="4510" systemVersion="13B42" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="4510" systemVersion="12E55" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES">
     <dependencies>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="3742"/>
     </dependencies>
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="SFCameraViewController">
             <connections>
+                <outlet property="blurredImageView" destination="Cm0-Sp-cl3" id="4eq-Ee-YbP"/>
                 <outlet property="cameraPreview" destination="EtY-Vt-I4U" id="a6g-IW-F4u"/>
                 <outlet property="containerView" destination="P44-ql-iDE" id="LnC-j2-WrS"/>
                 <outlet property="finalImageView" destination="RSL-P4-tUL" id="JW3-qp-bGZ"/>
                 <outlet property="flipLabel" destination="JZ8-NU-GJF" id="ZlT-jf-onG"/>
                 <outlet property="latestImageButton" destination="4cw-cS-fFW" id="AEG-hZ-wl6"/>
+                <outlet property="spinner" destination="zR0-Rr-hTX" id="cbW-nz-pk6"/>
                 <outlet property="tapButton" destination="NOQ-rh-7nF" id="0lY-xJ-br8"/>
                 <outlet property="view" destination="1" id="3"/>
             </connections>
@@ -25,12 +27,16 @@
                     <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                     <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
                 </view>
+                <imageView userInteractionEnabled="NO" alpha="0.0" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="Cm0-Sp-cl3">
+                    <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
+                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                </imageView>
                 <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="NOQ-rh-7nF">
                     <rect key="frame" x="60" y="184" width="200" height="200"/>
                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                     <color key="backgroundColor" red="0.088187839673913082" green="0.088187839673913082" blue="0.088187839673913082" alpha="0.54000000000000004" colorSpace="calibratedRGB"/>
                     <fontDescription key="fontDescription" type="system" pointSize="20"/>
-                    <state key="normal" title="TAP">
+                    <state key="normal" title="TAP to freeze">
                         <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                     </state>
@@ -92,6 +98,10 @@
                                 <action selector="yesTapped:" destination="-1" eventType="touchUpInside" id="5GD-4g-5dB"/>
                             </connections>
                         </button>
+                        <activityIndicatorView hidden="YES" opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" fixedFrame="YES" hidesWhenStopped="YES" style="gray" translatesAutoresizingMaskIntoConstraints="NO" id="zR0-Rr-hTX">
+                            <rect key="frame" x="150" y="274" width="20" height="20"/>
+                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                        </activityIndicatorView>
                     </subviews>
                     <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
                 </view>
