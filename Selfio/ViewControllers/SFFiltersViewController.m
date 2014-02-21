@@ -14,6 +14,7 @@
 #define BUTTON_TAG_INDEX 100
 
 @interface SFFiltersViewController ()
+
 @property (weak, nonatomic) IBOutlet UIImageView *photoImageView;
 @property (weak, nonatomic) IBOutlet UIImageView *blurredPhotoImageView;
 
@@ -25,7 +26,9 @@
 @property (weak, nonatomic) IBOutlet UIButton *rightMidButton;
 @property (weak, nonatomic) IBOutlet UIButton *rightBottomButton;
 
-@property (weak, nonatomic) IBOutlet UIButton *normalButton;
+@property (weak, nonatomic) IBOutlet UIButton *saveButton;
+
+@property (weak, nonatomic) IBOutlet UIActivityIndicatorView *spinner;
 
 - (IBAction)filterTapped:(UIButton *)sender;
 
@@ -53,10 +56,13 @@
     CGPoint rightBottomButtonOriginalPos;
     CGPoint rightBottomButtonHiddenPos;
     
+    CGPoint saveButtonOriginalPos;
+    CGPoint saveButtonHiddenPos;
+    
     BOOL filtersHidden;
     
     SFGalleryManager *galleryManager;
-    
+    SFFilterType selectedFilter;
 }
 
 #pragma mark - LifeCycle
@@ -78,16 +84,30 @@
     // Do any additional setup after loading the view from its nib.
     
     viewSize = self.view.frame.size;
+    
+    self.photoImageView.image = galleryManager.lowResPhoto;
+    
+    self.blurredPhotoImageView.image = [galleryManager.lowResPhoto applyDarkEffect];
+    
 }
 
 - (void)viewDidLayoutSubviews
 {
     [self arrangeButtons];
+    
+    saveButtonOriginalPos = CGPointMake(viewSize.width/2, viewSize.height - (0.6 * self.saveButton.frame.size.height));
+    saveButtonHiddenPos = CGPointMake(viewSize.width/2, viewSize.height+self.saveButton.frame.size.height);
+                                      
+    self.saveButton.center = saveButtonHiddenPos;
 }
 
 - (void)viewDidAppear:(BOOL)animated
 {
-    [self performSelector:@selector(animateButtonsIn) withObject:nil afterDelay:0.7];
+    [UIView animateWithDuration:0.3 animations:^{
+        self.blurredPhotoImageView.alpha = 1;
+    } completion:^(BOOL finished) {
+        [self animateButtonsIn];
+    }];
 }
 
 - (void)didReceiveMemoryWarning
@@ -96,12 +116,14 @@
     // Dispose of any resources that can be recreated.
 }
 
+#pragma mark - Custom Methods
+
 - (void)arrangeButtons
 {
     CGFloat leftX = viewSize.width * (1/3.0);
     CGFloat rightX = viewSize.width * (2/3.0);
     
-    CGFloat reducedHeight = (viewSize.height - (1.3 * self.normalButton.frame.size.height));
+    CGFloat reducedHeight = (viewSize.height - (1.3 * self.saveButton.frame.size.height));
     
     CGFloat topY = reducedHeight * (1/4.0);
     CGFloat midY = reducedHeight * (2/4.0);
@@ -135,10 +157,10 @@
 
 - (CGPoint)hiddenPointForPoint:(CGPoint)point
 {
-    CGFloat reducedHeight = (viewSize.height - (1.3 * self.normalButton.frame.size.height));
+    CGFloat reducedHeight = (viewSize.height - (1.2 * self.saveButton.frame.size.height));
     
     CGPoint diff = CGPointMake(point.x - viewSize.width/2, point.y - reducedHeight/2);
-    float multiplier = 2.5;
+    float multiplier = 3;
     CGPoint hiddenPoint = CGPointMake(point.x + multiplier * diff.x, point.y + multiplier * diff.y);
     
     return hiddenPoint;
@@ -219,6 +241,20 @@
         
     }];
     
+    
+    //-------------
+    //Save Button
+    
+    [UIView animateWithDuration:overshootDuration delay:0.0 options:UIViewAnimationOptionCurveEaseInOut animations:^{
+        
+        self.saveButton.center = [self overShootForHiddedPoint:saveButtonHiddenPos andOriginalPoint:saveButtonOriginalPos];
+    } completion:^(BOOL finished) {
+        [UIView animateWithDuration:animationDuration animations:^{
+            self.saveButton.center = saveButtonHiddenPos;
+        }];
+        
+    }];
+    
 }
 
 - (void)animateButtonsOut
@@ -288,18 +324,36 @@
         
     }];
     
+    //-------------
+    //Save Button
+    
+    [UIView animateWithDuration:animationDuration delay:0.25 options:UIViewAnimationOptionCurveEaseInOut animations:^{
+        
+        self.saveButton.center = [self overShootForHiddedPoint:saveButtonHiddenPos andOriginalPoint:saveButtonOriginalPos];
+    } completion:^(BOOL finished) {
+        [UIView animateWithDuration:overshootDuration animations:^{
+            self.saveButton.center = saveButtonOriginalPos;
+        }];
+        
+    }];
+    
 }
 
 #pragma mark - IBActions
 
 - (IBAction)imageTapped:(id)sender
 {
-    
     if (filtersHidden) {
         [self animateButtonsIn];
+        [UIView animateWithDuration:0.3 animations:^{
+            self.blurredPhotoImageView.alpha = 1;
+        }];
     }
     else{
         [self animateButtonsOut];
+        [UIView animateWithDuration:0.3 animations:^{
+            self.blurredPhotoImageView.alpha = 0;
+        }];
     }
     
     filtersHidden = !filtersHidden;
@@ -308,9 +362,9 @@
 
 - (IBAction)filterTapped:(UIButton *)sender
 {
-    SFFilterType filterType = sender.tag - BUTTON_TAG_INDEX;
+    selectedFilter = sender.tag - BUTTON_TAG_INDEX;
     
-    GPUImageFilter *filter = [SFFiltersUtility filterWithType:filterType];
+    GPUImageFilter *filter = [SFFiltersUtility filterWithType:selectedFilter];
     
     UIImage *newImage = [filter imageByFilteringImage:galleryManager.lowResPhoto];
     self.photoImageView.image = newImage;
@@ -320,8 +374,25 @@
         self.blurredPhotoImageView.image = blurredImage;
     } completion:^(BOOL finished) {
         
+        [self animateButtonsOut];
+        filtersHidden = !filtersHidden;
+        
+        [UIView animateWithDuration:0.3 animations:^{
+            self.blurredPhotoImageView.alpha = 0;
+        }];
     }];
     
 }
 
+- (IBAction)savePhoto:(id)sender {
+    
+    [self.spinner startAnimating];
+    
+    [galleryManager saveImageWithFilter:selectedFilter toAlbumWithCompletionBlock:^{
+        
+        [self.spinner stopAnimating];
+        
+        [self dismissViewControllerAnimated:NO completion:nil];
+    }];
+}
 @end

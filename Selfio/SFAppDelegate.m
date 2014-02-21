@@ -17,11 +17,11 @@
     self.window = [[UIWindow alloc] initWithFrame:[[UIScreen mainScreen] bounds]];
     // Override point for customization after application launch.
     
-//    SFCameraViewController *cameraViewController = [[SFCameraViewController alloc] initWithNibName:@"SFCameraViewController" bundle:nil];
+    SFCameraViewController *cameraViewController = [[SFCameraViewController alloc] initWithNibName:@"SFCameraViewController" bundle:nil];
     
-    SFFiltersViewController *filtersVC = [[SFFiltersViewController alloc] initWithNibName:@"SFFiltersViewController" bundle:nil];
+//    SFFiltersViewController *filtersVC = [[SFFiltersViewController alloc] initWithNibName:@"SFFiltersViewController" bundle:nil];
     
-    UINavigationController *navController = [[UINavigationController alloc] initWithRootViewController:filtersVC];
+    UINavigationController *navController = [[UINavigationController alloc] initWithRootViewController:cameraViewController];
     navController.navigationBarHidden = YES;
     
     self.window.rootViewController = navController;

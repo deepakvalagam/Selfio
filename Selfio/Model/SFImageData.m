@@ -10,11 +10,11 @@
 
 @implementation SFImageData
 
-- (id)initWithJpegData:(NSData *)data andMetadata:(NSDictionary *)metadata
+- (id)initWithImage:(UIImage *)image andMetadata:(NSDictionary *)metadata
 {
     self = [super init];
     if (self) {
-        _jpegData = [[NSData alloc] initWithData:data];
+        _image = image;
         _metaData = [[NSMutableDictionary alloc] initWithDictionary:metadata];
     }
     return self;

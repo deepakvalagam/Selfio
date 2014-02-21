@@ -10,9 +10,8 @@
                 <outlet property="cameraPreview" destination="EtY-Vt-I4U" id="a6g-IW-F4u"/>
                 <outlet property="containerView" destination="P44-ql-iDE" id="LnC-j2-WrS"/>
                 <outlet property="finalImageView" destination="RSL-P4-tUL" id="JW3-qp-bGZ"/>
-                <outlet property="flipLabel" destination="JZ8-NU-GJF" id="ZlT-jf-onG"/>
+                <outlet property="flipImageView" destination="tRg-u8-xE5" id="4H3-6l-im6"/>
                 <outlet property="latestImageButton" destination="4cw-cS-fFW" id="AEG-hZ-wl6"/>
-                <outlet property="spinner" destination="zR0-Rr-hTX" id="cbW-nz-pk6"/>
                 <outlet property="tapButton" destination="NOQ-rh-7nF" id="0lY-xJ-br8"/>
                 <outlet property="view" destination="1" id="3"/>
             </connections>
@@ -31,12 +30,12 @@
                     <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                 </imageView>
-                <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="NOQ-rh-7nF">
+                <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="NOQ-rh-7nF">
                     <rect key="frame" x="60" y="184" width="200" height="200"/>
                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                    <color key="backgroundColor" red="0.088187839673913082" green="0.088187839673913082" blue="0.088187839673913082" alpha="0.54000000000000004" colorSpace="calibratedRGB"/>
+                    <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                     <fontDescription key="fontDescription" type="system" pointSize="20"/>
-                    <state key="normal" title="TAP to freeze">
+                    <state key="normal" image="tap_button.png">
                         <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                     </state>
@@ -44,6 +43,10 @@
                         <action selector="buttonTapped:" destination="-1" eventType="touchUpInside" id="Oif-h9-HVx"/>
                     </connections>
                 </button>
+                <imageView userInteractionEnabled="NO" alpha="0.0" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="flip_button.png" translatesAutoresizingMaskIntoConstraints="NO" id="tRg-u8-xE5">
+                    <rect key="frame" x="60" y="184" width="200" height="200"/>
+                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                </imageView>
                 <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" alpha="0.0" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="FLIP" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="JZ8-NU-GJF">
                     <rect key="frame" x="60" y="184" width="200" height="200"/>
                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
@@ -73,11 +76,12 @@
                             <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
                             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         </imageView>
-                        <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="85K-Yd-W8n">
-                            <rect key="frame" x="20" y="445" width="100" height="50"/>
+                        <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="85K-Yd-W8n">
+                            <rect key="frame" x="54" y="445" width="70" height="70"/>
                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                            <color key="backgroundColor" red="0.92767068614130432" green="0.2706012753453883" blue="0.29294902221545877" alpha="1" colorSpace="calibratedRGB"/>
-                            <state key="normal" title="NO">
+                            <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                            <fontDescription key="fontDescription" type="system" pointSize="15"/>
+                            <state key="normal" image="no.png">
                                 <color key="titleColor" red="0.96862745100000003" green="0.96862745100000003" blue="0.96862745100000003" alpha="1" colorSpace="calibratedRGB"/>
                                 <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                             </state>
@@ -85,12 +89,12 @@
                                 <action selector="noTapped:" destination="-1" eventType="touchUpInside" id="Lgh-PY-8cj"/>
                             </connections>
                         </button>
-                        <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="rK3-2s-Aha">
-                            <rect key="frame" x="200" y="445" width="100" height="50"/>
+                        <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="rK3-2s-Aha">
+                            <rect key="frame" x="196" y="445" width="70" height="70"/>
                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                            <color key="backgroundColor" red="0.29905132284456648" green="0.92767068614130432" blue="0.30505300474565911" alpha="1" colorSpace="calibratedRGB"/>
+                            <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                             <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                            <state key="normal" title="YES">
+                            <state key="normal" image="yes.png">
                                 <color key="titleColor" red="0.96862745100000003" green="0.96862745100000003" blue="0.96862745100000003" alpha="1" colorSpace="calibratedRGB"/>
                                 <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                             </state>
@@ -98,10 +102,6 @@
                                 <action selector="yesTapped:" destination="-1" eventType="touchUpInside" id="5GD-4g-5dB"/>
                             </connections>
                         </button>
-                        <activityIndicatorView hidden="YES" opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" fixedFrame="YES" hidesWhenStopped="YES" style="gray" translatesAutoresizingMaskIntoConstraints="NO" id="zR0-Rr-hTX">
-                            <rect key="frame" x="150" y="274" width="20" height="20"/>
-                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                        </activityIndicatorView>
                     </subviews>
                     <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
                 </view>
@@ -109,4 +109,10 @@
             <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
         </view>
     </objects>
+    <resources>
+        <image name="flip_button.png" width="200" height="200"/>
+        <image name="no.png" width="70" height="70"/>
+        <image name="tap_button.png" width="200" height="200"/>
+        <image name="yes.png" width="70" height="70"/>
+    </resources>
 </document>

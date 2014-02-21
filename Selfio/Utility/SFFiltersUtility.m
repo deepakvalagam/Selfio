@@ -17,37 +17,37 @@
     switch (filterType) {
         case SFFilterTypeApple:
         {
-            filter = [[GPUImageToneCurveFilter alloc] initWithACV:@"Apple.acv"];
+            filter = [[GPUImageToneCurveFilter alloc] initWithACV:@"Apple"];
         }
             break;
         case SFFilterTypeBanana:
         {
-            filter = [[GPUImageToneCurveFilter alloc] initWithACV:@"Banana.acv"];
+            filter = [[GPUImageToneCurveFilter alloc] initWithACV:@"Banana"];
         }
             break;
         case SFFilterTypeGrapes:
         {
-            filter = [[GPUImageToneCurveFilter alloc] initWithACV:@"Grapes.acv"];
+            filter = [[GPUImageToneCurveFilter alloc] initWithACV:@"Grapes"];
         }
             break;
         case SFFilterTypeLemon:
         {
-            filter = [[GPUImageToneCurveFilter alloc] initWithACV:@"Lemon.acv"];
+            filter = [[GPUImageToneCurveFilter alloc] initWithACV:@"Lemon"];
         }
             break;
         case SFFilterTypeMango:
         {
-            filter = [[GPUImageToneCurveFilter alloc] initWithACV:@"Mango.acv"];
+            filter = [[GPUImageToneCurveFilter alloc] initWithACV:@"Mango"];
         }
             break;
         case SFFilterTypeOrange:
         {
-            filter = [[GPUImageToneCurveFilter alloc] initWithACV:@"Orange.acv"];
+            filter = [[GPUImageToneCurveFilter alloc] initWithACV:@"Orange"];
         }
             break;
         case SFFilterTypeWatermelon:
         {
-            filter = [[GPUImageToneCurveFilter alloc] initWithACV:@"Watermelon.acv"];
+            filter = [[GPUImageToneCurveFilter alloc] initWithACV:@"Watermelon"];
         }
             break;
             
