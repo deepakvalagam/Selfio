@@ -167,12 +167,13 @@ static int const thresholdAngle = 170;
                             
                             self.galleryManager.photo = [[SFImageData alloc] initWithJpegData:processedJPEG andMetadata:stillCamera.currentCaptureMetadata];
                             
+                            self.galleryManager.lowResPhoto = [[UIImage imageWithData:processedJPEG] imageScaledToFitSize:CGSizeMake(self.view.frame.size.width, self.view.frame.size.height)];
+                            
                             runOnMainQueueWithoutDeadlocking(^{
+                                
                                 self.blurredImageView.image = nil;
                                 
-                                UIImage *scaledImage = [[UIImage imageWithData:processedJPEG] imageScaledToFitSize:CGSizeMake(self.view.frame.size.width, self.view.frame.size.height)];
-                                
-                                self.finalImageView.image = scaledImage;
+                                self.finalImageView.image = self.galleryManager.lowResPhoto;
                                 
                                 [self showImage];
                             });

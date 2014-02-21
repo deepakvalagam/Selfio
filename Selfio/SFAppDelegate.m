@@ -8,6 +8,7 @@
 
 #import "SFAppDelegate.h"
 #import "SFCameraViewController.h"
+#import "SFFiltersViewController.h"
 
 @implementation SFAppDelegate
 
@@ -16,9 +17,11 @@
     self.window = [[UIWindow alloc] initWithFrame:[[UIScreen mainScreen] bounds]];
     // Override point for customization after application launch.
     
-    SFCameraViewController *cameraViewController = [[SFCameraViewController alloc] initWithNibName:@"SFCameraViewController" bundle:nil];
+//    SFCameraViewController *cameraViewController = [[SFCameraViewController alloc] initWithNibName:@"SFCameraViewController" bundle:nil];
     
-    UINavigationController *navController = [[UINavigationController alloc] initWithRootViewController:cameraViewController];
+    SFFiltersViewController *filtersVC = [[SFFiltersViewController alloc] initWithNibName:@"SFFiltersViewController" bundle:nil];
+    
+    UINavigationController *navController = [[UINavigationController alloc] initWithRootViewController:filtersVC];
     navController.navigationBarHidden = YES;
     
     self.window.rootViewController = navController;

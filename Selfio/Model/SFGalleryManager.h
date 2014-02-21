@@ -27,6 +27,8 @@ typedef enum {
 /*Latest photo taken */
 @property (nonatomic, strong) SFImageData *photo;
 
+@property (nonatomic, strong) UIImage *lowResPhoto;
+
 + (instancetype)sharedManager;
 
 - (NSInteger)photosCount;
