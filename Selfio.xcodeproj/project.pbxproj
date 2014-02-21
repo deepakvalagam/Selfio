@@ -194,6 +194,19 @@
 		0A03CE4918AD34F600BF48FC /* AVFoundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0A03CE4818AD34F600BF48FC /* AVFoundation.framework */; };
 		0A03CE4B18AD350700BF48FC /* OpenGLES.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0A03CE4A18AD350700BF48FC /* OpenGLES.framework */; };
 		0A03CE4D18AD350E00BF48FC /* CoreMedia.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0A03CE4C18AD350E00BF48FC /* CoreMedia.framework */; };
+		0A21EA9218B78CEA00BD8718 /* filter.png in Resources */ = {isa = PBXBuildFile; fileRef = 0A21EA8A18B78CEA00BD8718 /* filter.png */; };
+		0A21EA9318B78CEA00BD8718 /* filter@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 0A21EA8B18B78CEA00BD8718 /* filter@2x.png */; };
+		0A21EA9418B78CEA00BD8718 /* no.png in Resources */ = {isa = PBXBuildFile; fileRef = 0A21EA8C18B78CEA00BD8718 /* no.png */; };
+		0A21EA9518B78CEA00BD8718 /* no@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 0A21EA8D18B78CEA00BD8718 /* no@2x.png */; };
+		0A21EA9618B78CEA00BD8718 /* tap_button.png in Resources */ = {isa = PBXBuildFile; fileRef = 0A21EA8E18B78CEA00BD8718 /* tap_button.png */; };
+		0A21EA9718B78CEA00BD8718 /* tap_button@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 0A21EA8F18B78CEA00BD8718 /* tap_button@2x.png */; };
+		0A21EA9818B78CEA00BD8718 /* yes.png in Resources */ = {isa = PBXBuildFile; fileRef = 0A21EA9018B78CEA00BD8718 /* yes.png */; };
+		0A21EA9918B78CEA00BD8718 /* yes@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 0A21EA9118B78CEA00BD8718 /* yes@2x.png */; };
+		0A21EAA218B78E4800BD8718 /* save.png in Resources */ = {isa = PBXBuildFile; fileRef = 0A21EAA018B78E4800BD8718 /* save.png */; };
+		0A21EAA318B78E4800BD8718 /* save@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 0A21EAA118B78E4800BD8718 /* save@2x.png */; };
+		0A21EAA618B7911A00BD8718 /* flip_button.png in Resources */ = {isa = PBXBuildFile; fileRef = 0A21EAA418B7911A00BD8718 /* flip_button.png */; };
+		0A21EAA718B7911A00BD8718 /* flip_button@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 0A21EAA518B7911A00BD8718 /* flip_button@2x.png */; };
+		0A4C5B6818B727DE00B745C5 /* SFFiltersUtility.m in Sources */ = {isa = PBXBuildFile; fileRef = 0A4C5B6718B727DE00B745C5 /* SFFiltersUtility.m */; };
 		0A758AEC18AD35D6007B28FD /* libGPUImage.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 0A03CE3E18AD34BA00BF48FC /* libGPUImage.a */; };
 		0A758AF118AD35DB007B28FD /* CoreMotion.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0A758AF018AD35DB007B28FD /* CoreMotion.framework */; };
 		0A758AF318AD43BB007B28FD /* SenTestingKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0A758AF218AD43BB007B28FD /* SenTestingKit.framework */; };
@@ -617,7 +630,21 @@
 		0A03CE4818AD34F600BF48FC /* AVFoundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AVFoundation.framework; path = System/Library/Frameworks/AVFoundation.framework; sourceTree = SDKROOT; };
 		0A03CE4A18AD350700BF48FC /* OpenGLES.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = OpenGLES.framework; path = System/Library/Frameworks/OpenGLES.framework; sourceTree = SDKROOT; };
 		0A03CE4C18AD350E00BF48FC /* CoreMedia.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreMedia.framework; path = System/Library/Frameworks/CoreMedia.framework; sourceTree = SDKROOT; };
+		0A21EA8A18B78CEA00BD8718 /* filter.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = filter.png; sourceTree = "<group>"; };
+		0A21EA8B18B78CEA00BD8718 /* filter@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "filter@2x.png"; sourceTree = "<group>"; };
+		0A21EA8C18B78CEA00BD8718 /* no.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = no.png; sourceTree = "<group>"; };
+		0A21EA8D18B78CEA00BD8718 /* no@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "no@2x.png"; sourceTree = "<group>"; };
+		0A21EA8E18B78CEA00BD8718 /* tap_button.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = tap_button.png; sourceTree = "<group>"; };
+		0A21EA8F18B78CEA00BD8718 /* tap_button@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "tap_button@2x.png"; sourceTree = "<group>"; };
+		0A21EA9018B78CEA00BD8718 /* yes.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = yes.png; sourceTree = "<group>"; };
+		0A21EA9118B78CEA00BD8718 /* yes@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "yes@2x.png"; sourceTree = "<group>"; };
+		0A21EAA018B78E4800BD8718 /* save.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = save.png; sourceTree = "<group>"; };
+		0A21EAA118B78E4800BD8718 /* save@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "save@2x.png"; sourceTree = "<group>"; };
+		0A21EAA418B7911A00BD8718 /* flip_button.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = flip_button.png; sourceTree = "<group>"; };
+		0A21EAA518B7911A00BD8718 /* flip_button@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "flip_button@2x.png"; sourceTree = "<group>"; };
 		0A3C56C818AD359F00E7C818 /* GPUImage.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = GPUImage.xcodeproj; path = Selfio/Components/GPUImage/framework/GPUImage.xcodeproj; sourceTree = "<group>"; };
+		0A4C5B6618B727DE00B745C5 /* SFFiltersUtility.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SFFiltersUtility.h; sourceTree = "<group>"; };
+		0A4C5B6718B727DE00B745C5 /* SFFiltersUtility.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SFFiltersUtility.m; sourceTree = "<group>"; };
 		0A758AF018AD35DB007B28FD /* CoreMotion.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreMotion.framework; path = System/Library/Frameworks/CoreMotion.framework; sourceTree = SDKROOT; };
 		0A758AF218AD43BB007B28FD /* SenTestingKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SenTestingKit.framework; path = Library/Frameworks/SenTestingKit.framework; sourceTree = DEVELOPER_DIR; };
 		0A758AF518AEA043007B28FD /* iCarousel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = iCarousel.h; sourceTree = "<group>"; };
@@ -1188,6 +1215,25 @@
 			path = iOS;
 			sourceTree = "<group>";
 		};
+		0A21EA8918B78CEA00BD8718 /* Images */ = {
+			isa = PBXGroup;
+			children = (
+				0A21EAA418B7911A00BD8718 /* flip_button.png */,
+				0A21EAA518B7911A00BD8718 /* flip_button@2x.png */,
+				0A21EAA018B78E4800BD8718 /* save.png */,
+				0A21EAA118B78E4800BD8718 /* save@2x.png */,
+				0A21EA8A18B78CEA00BD8718 /* filter.png */,
+				0A21EA8B18B78CEA00BD8718 /* filter@2x.png */,
+				0A21EA8C18B78CEA00BD8718 /* no.png */,
+				0A21EA8D18B78CEA00BD8718 /* no@2x.png */,
+				0A21EA8E18B78CEA00BD8718 /* tap_button.png */,
+				0A21EA8F18B78CEA00BD8718 /* tap_button@2x.png */,
+				0A21EA9018B78CEA00BD8718 /* yes.png */,
+				0A21EA9118B78CEA00BD8718 /* yes@2x.png */,
+			);
+			path = Images;
+			sourceTree = "<group>";
+		};
 		0A3C56C918AD359F00E7C818 /* Products */ = {
 			isa = PBXGroup;
 			children = (
@@ -1250,6 +1296,8 @@
 			isa = PBXGroup;
 			children = (
 				0AE1E9FF18B61EE0003536FF /* Categories */,
+				0A4C5B6618B727DE00B745C5 /* SFFiltersUtility.h */,
+				0A4C5B6718B727DE00B745C5 /* SFFiltersUtility.m */,
 			);
 			path = Utility;
 			sourceTree = "<group>";
@@ -1274,6 +1322,7 @@
 		0AE1EA1718B637C0003536FF /* Resources */ = {
 			isa = PBXGroup;
 			children = (
+				0A21EA8918B78CEA00BD8718 /* Images */,
 				0AE1EA1818B637C0003536FF /* FilterPresets */,
 			);
 			path = Resources;
@@ -1413,22 +1462,34 @@
 				0A03CD8F18AD34B900BF48FC /* lookup_amatorka.png in Resources */,
 				0A03CD8C18AD34B900BF48FC /* GPUImageTests-Info.plist in Resources */,
 				0A03CD9218AD34B900BF48FC /* lookup_soft_elegance_2.png in Resources */,
+				0A21EA9518B78CEA00BD8718 /* no@2x.png in Resources */,
 				0A03CBF318AD334300BF48FC /* InfoPlist.strings in Resources */,
 				0AE1EA2218B637C0003536FF /* Grapes.acv in Resources */,
 				0A03CD9118AD34B900BF48FC /* lookup_soft_elegance_1.png in Resources */,
+				0A21EA9318B78CEA00BD8718 /* filter@2x.png in Resources */,
+				0A21EA9918B78CEA00BD8718 /* yes@2x.png in Resources */,
+				0A21EAA218B78E4800BD8718 /* save.png in Resources */,
 				0A03CD8B18AD34B900BF48FC /* InfoPlist.strings in Resources */,
 				0AE1EA2518B637C0003536FF /* Orange.acv in Resources */,
 				0AE1EA2418B637C0003536FF /* Mango.acv in Resources */,
+				0A21EAA318B78E4800BD8718 /* save@2x.png in Resources */,
 				0AE1EA1318B63156003536FF /* SFFiltersViewController.xib in Resources */,
 				0A03CD8E18AD34B900BF48FC /* lookup.png in Resources */,
 				0A03CD9018AD34B900BF48FC /* lookup_miss_etikate.png in Resources */,
 				0A03CC2118AD34B000BF48FC /* SFCameraViewController.xib in Resources */,
 				0A758AFF18AF9AFA007B28FD /* SFImageGalleryViewController.xib in Resources */,
 				0AE1EA2018B637C0003536FF /* Apple.acv in Resources */,
+				0A21EA9618B78CEA00BD8718 /* tap_button.png in Resources */,
+				0A21EAA718B7911A00BD8718 /* flip_button@2x.png in Resources */,
+				0A21EA9418B78CEA00BD8718 /* no.png in Resources */,
 				0AE1EA2118B637C0003536FF /* Banana.acv in Resources */,
+				0A21EA9218B78CEA00BD8718 /* filter.png in Resources */,
 				0AE1EA2618B637C0003536FF /* Watermelon.acv in Resources */,
 				0A03CBFB18AD334300BF48FC /* Images.xcassets in Resources */,
+				0A21EAA618B7911A00BD8718 /* flip_button.png in Resources */,
 				0AE1EA2318B637C0003536FF /* Lemon.acv in Resources */,
+				0A21EA9818B78CEA00BD8718 /* yes.png in Resources */,
+				0A21EA9718B78CEA00BD8718 /* tap_button@2x.png in Resources */,
 				0A758B0E18AF9D87007B28FD /* SFImageGalleryCell.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -1603,6 +1664,7 @@
 				0A03CDC218AD34B900BF48FC /* GPUImageGaussianBlurPositionFilter.m in Sources */,
 				0A03CDCE18AD34B900BF48FC /* GPUImageHoughTransformLineDetector.m in Sources */,
 				0A03CDF518AD34B900BF48FC /* GPUImagePerlinNoiseFilter.m in Sources */,
+				0A4C5B6818B727DE00B745C5 /* SFFiltersUtility.m in Sources */,
 				0A03CDCD18AD34B900BF48FC /* GPUImageHistogramGenerator.m in Sources */,
 				0A03CDD118AD34B900BF48FC /* GPUImageHueFilter.m in Sources */,
 				0A03CDB318AD34B900BF48FC /* GPUImageDirectionalNonMaximumSuppressionFilter.m in Sources */,

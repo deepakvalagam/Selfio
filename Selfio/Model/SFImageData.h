@@ -10,9 +10,9 @@
 
 @interface SFImageData : NSObject
 
-@property (nonatomic, strong, readonly) NSData *jpegData;
+@property (nonatomic, strong, readonly) UIImage *image;
 @property (nonatomic, strong, readonly) NSMutableDictionary *metaData;
 
-- (id)initWithJpegData:(NSData *)data andMetadata:(NSDictionary *)metadata;
+- (id)initWithImage:(UIImage *)image andMetadata:(NSDictionary *)metadata;
 
 @end

@@ -16,8 +16,12 @@
 #import "UIImage+ImageEffects.h"
 #import "SFFiltersViewController.h"
 #import "SFImageData.h"
+#import "SFFiltersViewController.h"
 
 #define RADIANS_TO_DEGREES(x) (180/M_PI)*x
+
+#define CAMERA_PREVIEW_PRESET AVCaptureSessionPresetHigh
+#define CAMERA_SAVE_PRESET AVCaptureSessionPresetHigh
 
 static int const thresholdAngle = 170;
 
@@ -28,8 +32,7 @@ static int const thresholdAngle = 170;
 @property (weak, nonatomic) IBOutlet UIButton *tapButton;
 @property (weak, nonatomic) IBOutlet UIImageView *finalImageView;
 @property (weak, nonatomic) IBOutlet UIView *containerView;
-@property (weak, nonatomic) IBOutlet UILabel *flipLabel;
-@property (weak, nonatomic) IBOutlet UIActivityIndicatorView *spinner;
+@property (weak, nonatomic) IBOutlet UIImageView *flipImageView;
 @property (weak, nonatomic) IBOutlet UIButton *latestImageButton;
 
 @property (nonatomic, strong) SFGalleryManager *galleryManager;
@@ -70,7 +73,7 @@ static int const thresholdAngle = 170;
     defaultFilter = [[GPUImageGammaFilter alloc] init];
     
     //TODO: Tweak the quality
-    stillCamera = [[GPUImageStillCamera alloc] initWithSessionPreset:AVCaptureSessionPresetHigh cameraPosition:AVCaptureDevicePositionFront];
+    stillCamera = [[GPUImageStillCamera alloc] initWithSessionPreset:CAMERA_PREVIEW_PRESET cameraPosition:AVCaptureDevicePositionFront];
     stillCamera.outputImageOrientation = UIInterfaceOrientationPortrait;
     stillCamera.jpegCompressionQuality = 0.9;
     
@@ -102,6 +105,13 @@ static int const thresholdAngle = 170;
     [super viewDidAppear:animated];
     
     [self updateLatestThumbnailImage];
+    
+    [stillCamera startCameraCapture];
+}
+
+- (void)viewDidDisappear:(BOOL)animated
+{
+    [stillCamera stopCameraCapture];
 }
 
 - (void)didReceiveMemoryWarning
@@ -145,10 +155,10 @@ static int const thresholdAngle = 170;
                     [stillCamera rotateCamera];
                     [stillCamera addTarget:defaultFilter];
                     [stillCamera startCameraCapture];
-                    stillCamera.captureSessionPreset = AVCaptureSessionPresetPhoto;
+                    stillCamera.captureSessionPreset = CAMERA_SAVE_PRESET;
                     
                     [self.cameraPreview setTransform:CGAffineTransformMakeScale(1, 1)];
-                    self.flipLabel.alpha = 0;
+                    self.flipImageView.alpha = 0;
                 }
                 //TODO: Restrict pitch and Yaw, Auto Focus, Accelerometer
                 
@@ -165,14 +175,17 @@ static int const thresholdAngle = 170;
                         
                         [stillCamera capturePhotoAsJPEGProcessedUpToFilter:defaultFilter withCompletionHandler:^(NSData *processedJPEG, NSError *error) {
                             
-                            self.galleryManager.photo = [[SFImageData alloc] initWithJpegData:processedJPEG andMetadata:stillCamera.currentCaptureMetadata];
+                            UIImage *jpegImage = [UIImage imageWithData:processedJPEG];
+                            
+                            self.galleryManager.photo = [[SFImageData alloc] initWithImage:jpegImage andMetadata:stillCamera.currentCaptureMetadata];
+                            
+                            self.galleryManager.lowResPhoto = [jpegImage imageScaledToFitSize:CGSizeMake(self.view.frame.size.width, self.view.frame.size.height)];
                             
                             runOnMainQueueWithoutDeadlocking(^{
+                                
                                 self.blurredImageView.image = nil;
                                 
-                                UIImage *scaledImage = [[UIImage imageWithData:processedJPEG] imageScaledToFitSize:CGSizeMake(self.view.frame.size.width, self.view.frame.size.height)];
-                                
-                                self.finalImageView.image = scaledImage;
+                                self.finalImageView.image = self.galleryManager.lowResPhoto;
                                 
                                 [self showImage];
                             });
@@ -239,7 +252,7 @@ static int const thresholdAngle = 170;
     
     self.view.userInteractionEnabled = YES;
     
-    stillCamera.captureSessionPreset = AVCaptureSessionPresetHigh;
+    stillCamera.captureSessionPreset = CAMERA_PREVIEW_PRESET;
     [stillCamera rotateCamera];
     [stillCamera addTarget:self.cameraPreview];
     [stillCamera addTarget:defaultFilter];
@@ -303,7 +316,7 @@ static int const thresholdAngle = 170;
         self.tapButton.alpha = 0;
     } completion:^(BOOL finished) {
         [UIView animateWithDuration:0.2 animations:^{
-            self.flipLabel.alpha = 1;
+            self.flipImageView.alpha = 1;
         }];
     }];
     
@@ -325,27 +338,15 @@ static int const thresholdAngle = 170;
 
 - (IBAction)yesTapped:(id)sender
 {
-    [self.spinner startAnimating];
+    SFFiltersViewController *filtersViewController = [[SFFiltersViewController alloc] initWithNibName:@"SFFiltersViewController" bundle:nil];
     
-    [self.galleryManager saveImagetoAlbumWithCompletionBlock:^{
+    [self.navigationController presentViewController:filtersViewController animated:NO completion:^{
+        self.containerView.alpha = 0;
+        self.containerView.hidden = YES;
         
-        dispatch_async(dispatch_get_main_queue(), ^{
-            
-            [self.spinner stopAnimating];
-            
-            [UIView animateWithDuration:0.2 animations:^{
-                self.containerView.alpha = 0;
-            } completion:^(BOOL finished) {
-                self.containerView.hidden = YES;
-            }];
-            
-            [self resetView];
-            
-            [self updateLatestThumbnailImage];
-        });
+        [self resetView];
         
         [self resetValues];
-        
     }];
 }
 

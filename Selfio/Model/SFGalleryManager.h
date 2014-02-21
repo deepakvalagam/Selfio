@@ -9,6 +9,7 @@
 #import <Foundation/Foundation.h>
 #import <AssetsLibrary/AssetsLibrary.h>
 #import "SFImageData.h"
+#import "SFFiltersUtility.h"
 
 #define GALLERY_NAME @"Selfio"
 
@@ -27,6 +28,8 @@ typedef enum {
 /*Latest photo taken */
 @property (nonatomic, strong) SFImageData *photo;
 
+@property (nonatomic, strong) UIImage *lowResPhoto;
+
 + (instancetype)sharedManager;
 
 - (NSInteger)photosCount;
@@ -35,7 +38,7 @@ typedef enum {
 
 - (UIImage *)latestImage;
 
-- (void)saveImagetoAlbumWithCompletionBlock:(void(^)())completionBlock;
+- (void)saveImageWithFilter:(SFFilterType)filterType toAlbumWithCompletionBlock:(void(^)())completionBlock;
 
 - (void)flushData;
 

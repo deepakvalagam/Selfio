@@ -8,6 +8,7 @@
 
 #import "SFAppDelegate.h"
 #import "SFCameraViewController.h"
+#import "SFFiltersViewController.h"
 
 @implementation SFAppDelegate
 
@@ -17,6 +18,8 @@
     // Override point for customization after application launch.
     
     SFCameraViewController *cameraViewController = [[SFCameraViewController alloc] initWithNibName:@"SFCameraViewController" bundle:nil];
+    
+//    SFFiltersViewController *filtersVC = [[SFFiltersViewController alloc] initWithNibName:@"SFFiltersViewController" bundle:nil];
     
     UINavigationController *navController = [[UINavigationController alloc] initWithRootViewController:cameraViewController];
     navController.navigationBarHidden = YES;
