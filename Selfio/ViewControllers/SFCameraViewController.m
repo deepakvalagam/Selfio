@@ -21,14 +21,15 @@
 #define RADIANS_TO_DEGREES(x) (180/M_PI)*x
 
 #define CAMERA_PREVIEW_PRESET AVCaptureSessionPresetHigh
-#define CAMERA_SAVE_PRESET AVCaptureSessionPresetHigh
+#define CAMERA_SAVE_PRESET AVCaptureSessionPresetPhoto
+
+#define BLUR_RADIUS 10
 
 static int const thresholdAngle = 170;
 
-@interface SFCameraViewController ()
+@interface SFCameraViewController () 
 
 @property (weak, nonatomic) IBOutlet GPUImageView *cameraPreview;
-@property (weak, nonatomic) IBOutlet UIImageView *blurredImageView;
 @property (weak, nonatomic) IBOutlet UIButton *tapButton;
 @property (weak, nonatomic) IBOutlet UIImageView *finalImageView;
 @property (weak, nonatomic) IBOutlet UIView *containerView;
@@ -42,11 +43,12 @@ static int const thresholdAngle = 170;
 @implementation SFCameraViewController
 {
     GPUImageStillCamera *stillCamera;
-    
     CMMotionManager *motionManager;
     CMAttitude *referenceAttitude;
     
     GPUImageGammaFilter *defaultFilter;
+    GPUImageGaussianBlurFilter *blurFilter;
+    
     BOOL didFlip;
     BOOL didCameraRotate;
 }
@@ -71,6 +73,8 @@ static int const thresholdAngle = 170;
     [self.cameraPreview setContentMode:UIViewContentModeCenter];
     
     defaultFilter = [[GPUImageGammaFilter alloc] init];
+    blurFilter = [[GPUImageGaussianBlurFilter alloc] init];
+    blurFilter.blurRadiusInPixels = 1;
     
     //TODO: Tweak the quality
     stillCamera = [[GPUImageStillCamera alloc] initWithSessionPreset:CAMERA_PREVIEW_PRESET cameraPosition:AVCaptureDevicePositionFront];
@@ -78,8 +82,9 @@ static int const thresholdAngle = 170;
     stillCamera.jpegCompressionQuality = 0.9;
     
     [stillCamera addTarget:defaultFilter];
+    [stillCamera addTarget:blurFilter];
+    [blurFilter addTarget:self.cameraPreview];
     
-    [stillCamera addTarget:self.cameraPreview];
     [stillCamera startCameraCapture];
     motionManager = [[CMMotionManager alloc] init];
     
@@ -92,7 +97,6 @@ static int const thresholdAngle = 170;
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(orientationChanged:) name:UIDeviceOrientationDidChangeNotification object:nil];
     
     [self.cameraPreview setTransform:CGAffineTransformMakeScale(-1, 1)];
-    [self.blurredImageView setTransform:CGAffineTransformMakeScale(-1, 1)];
     
     [self startMotionUpdates];
     
@@ -153,13 +157,25 @@ static int const thresholdAngle = 170;
                     didCameraRotate = YES;
                     
                     [stillCamera rotateCamera];
-                    [stillCamera addTarget:defaultFilter];
-                    [stillCamera startCameraCapture];
                     stillCamera.captureSessionPreset = CAMERA_SAVE_PRESET;
+                    
+                    blurFilter.blurRadiusInPixels = 1;
                     
                     [self.cameraPreview setTransform:CGAffineTransformMakeScale(1, 1)];
                     self.flipImageView.alpha = 0;
                 }
+                if (didCameraRotate && fabs(degreesRotated) < 90) {
+                    didCameraRotate = NO;
+                    
+                    [stillCamera rotateCamera];
+                    stillCamera.captureSessionPreset = CAMERA_PREVIEW_PRESET;
+                    
+                    blurFilter.blurRadiusInPixels = BLUR_RADIUS;
+                    
+                    [self.cameraPreview setTransform:CGAffineTransformMakeScale(-1, 1)];
+                    self.flipImageView.alpha = 1;
+                }
+                
                 //TODO: Restrict pitch and Yaw, Auto Focus, Accelerometer
                 
                 if (!didFlip && fabs(degreesRotated) > thresholdAngle) {
@@ -182,8 +198,6 @@ static int const thresholdAngle = 170;
                             self.galleryManager.lowResPhoto = [jpegImage imageScaledToFitSize:CGSizeMake(self.view.frame.size.width, self.view.frame.size.height)];
                             
                             runOnMainQueueWithoutDeadlocking(^{
-                                
-                                self.blurredImageView.image = nil;
                                 
                                 self.finalImageView.image = self.galleryManager.lowResPhoto;
                                 
@@ -214,8 +228,10 @@ static int const thresholdAngle = 170;
 
 - (void)showImage
 {
-    [stillCamera removeAllTargets];
-    [stillCamera stopCameraCapture];
+//    [stillCamera removeAllTargets];
+//    [stillCamera stopCameraCapture];
+    
+    blurFilter.blurRadiusInPixels = BLUR_RADIUS;
     
     self.view.userInteractionEnabled = YES;
     self.containerView.hidden = NO;
@@ -224,8 +240,12 @@ static int const thresholdAngle = 170;
         self.containerView.alpha = 1;
     }];
     
-    self.cameraPreview.hidden = YES;
+//    self.cameraPreview.hidden = YES;
     self.tapButton.hidden = YES;
+    
+    stillCamera.captureSessionPreset = CAMERA_PREVIEW_PRESET;
+    [stillCamera rotateCamera];
+    [self.cameraPreview setTransform:CGAffineTransformMakeScale(-1, 1)];
 }
 
 - (void)updateLatestThumbnailImage
@@ -247,20 +267,19 @@ static int const thresholdAngle = 170;
     self.cameraPreview.hidden = NO;
     [self.cameraPreview setTransform:CGAffineTransformMakeScale(-1, 1)];
     
-    self.blurredImageView.image = nil;
-    self.blurredImageView.alpha = 0;
-    
     self.view.userInteractionEnabled = YES;
     
-    stillCamera.captureSessionPreset = CAMERA_PREVIEW_PRESET;
-    [stillCamera rotateCamera];
-    [stillCamera addTarget:self.cameraPreview];
-    [stillCamera addTarget:defaultFilter];
-    [stillCamera startCameraCapture];
+//    stillCamera.captureSessionPreset = CAMERA_PREVIEW_PRESET;
+//    [stillCamera rotateCamera];
+//    [stillCamera addTarget:blurFilter];
+//    [blurFilter addTarget:self.cameraPreview];
+//    [stillCamera startCameraCapture];
 }
 
 - (void)resetValues
 {
+    blurFilter.blurRadiusInPixels = 1;
+    
     referenceAttitude = nil;
     didFlip = NO;
     didCameraRotate = NO;
@@ -276,38 +295,55 @@ static int const thresholdAngle = 170;
     
     NSLog(@"Orientation - %d", deviceOrientation);
     
-    //TODO: Rotate the view Controls
+    CGFloat finalAngle;
+    
+    switch (deviceOrientation) {
+        case UIDeviceOrientationPortrait:
+        {
+            finalAngle = 0;
+        }
+            break;
+        case UIDeviceOrientationLandscapeLeft:
+        {
+            finalAngle = M_PI_2;
+        }
+            break;
+        case UIDeviceOrientationLandscapeRight:
+        {
+            finalAngle = -M_PI_2;
+        }
+            break;
+        case UIDeviceOrientationPortraitUpsideDown:
+        {
+            finalAngle = M_PI;
+        }
+            break;
+            
+        default:
+        {
+            finalAngle = 0;
+        }
+            break;
+    }
+    
+    [self rotateViewsByAngle:finalAngle];
 }
 
+- (void)rotateViewsByAngle:(CGFloat)angle
+{
+    [UIView animateWithDuration:0.3 animations:^{
+        [self.tapButton setTransform:CGAffineTransformMakeRotation(angle)];
+        [self.flipImageView setTransform:CGAffineTransformMakeRotation(angle)];
+        [self.latestImageButton setTransform:CGAffineTransformMakeRotation(angle)];
+    }];
+}
 
 #pragma mark - Button Actions
 
 - (IBAction)buttonTapped:(id)sender
 {
-    //Take pic and blur
-    [stillCamera capturePhotoAsJPEGProcessedUpToFilter:defaultFilter withCompletionHandler:^(NSData *processedJPEG, NSError *error) {
-       
-        DLog(@"KiloBYTES : %d", processedJPEG.length/1000);
-        DLog(@"Size : %@", NSStringFromCGSize([UIImage imageWithData:processedJPEG].size));
-        
-        UIImage *scaledImage = [[UIImage imageWithData:processedJPEG] imageScaledToFitSize:CGSizeMake(self.view.frame.size.width, self.view.frame.size.height)];
-        UIImage *blurredImage = [scaledImage applyBlurWithRadius:5.0 tintColor:[UIColor colorWithWhite:1.0 alpha:0.3] saturationDeltaFactor:1.8 maskImage:nil];
-        
-        runOnMainQueueWithoutDeadlocking(^{
-            
-            self.blurredImageView.image =  blurredImage;
-            
-            [UIView animateWithDuration:0.3 animations:^{
-                self.blurredImageView.alpha = 1;
-            }];
-            
-            [stillCamera stopCameraCapture];
-            [stillCamera removeAllTargets];
-        });
-        
-        DLog(@"FREEZE");
-        
-    }];
+    //Blur
+    blurFilter.blurRadiusInPixels = BLUR_RADIUS;
     
     //Take Reference attitude
     referenceAttitude = motionManager.deviceMotion.attitude;
