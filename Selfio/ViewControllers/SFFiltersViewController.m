@@ -83,6 +83,18 @@
     [super viewDidLoad];
     // Do any additional setup after loading the view from its nib.
     
+    CGRect viewFrame;
+    viewFrame = self.view.frame;
+    viewFrame.size.width = 320.0f;
+    
+    if (IS_IPHONE_5) {
+        viewFrame.size.height = 568.0f;
+    }
+    else{
+        viewFrame.size.height = 480.0f;
+    }
+    [self.view setFrame:viewFrame];
+    
     viewSize = self.view.frame.size;
     
     self.photoImageView.image = galleryManager.lowResPhoto;

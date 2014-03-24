@@ -23,7 +23,7 @@
 #define CAMERA_PREVIEW_PRESET AVCaptureSessionPresetHigh
 #define CAMERA_SAVE_PRESET AVCaptureSessionPresetPhoto
 
-#define BLUR_RADIUS 10
+#define BLUR_RADIUS 6
 
 static int const thresholdAngle = 170;
 
@@ -68,6 +68,19 @@ static int const thresholdAngle = 170;
 {
     [super viewDidLoad];
     // Do any additional setup after loading the view from its nib.
+    
+    CGRect viewFrame;
+    viewFrame = self.view.frame;
+    viewFrame.size.width = 320.0f;
+    
+    if (IS_IPHONE_5) {
+        viewFrame.size.height = 568.0f;
+    }
+    else{
+        viewFrame.size.height = 480.0f;
+    }
+    [self.view setFrame:viewFrame];
+    
     
     [self.cameraPreview setFrame:CGRectMake(0, 0, self.view.frame.size.width, self.view.frame.size.height)];
     [self.cameraPreview setContentMode:UIViewContentModeCenter];
@@ -218,14 +231,6 @@ static int const thresholdAngle = 170;
     
 }
 
-- (void)playBeep
-{
-    NSString *soundPath = [[NSBundle mainBundle] pathForResource:@"beep--attention" ofType:@"aif"];
-    SystemSoundID soundID;
-    AudioServicesCreateSystemSoundID((__bridge CFURLRef)[NSURL fileURLWithPath: soundPath], &soundID);
-    AudioServicesPlaySystemSound (soundID);
-}
-
 - (void)showImage
 {
 //    [stillCamera removeAllTargets];
@@ -293,7 +298,7 @@ static int const thresholdAngle = 170;
 {
     UIDeviceOrientation deviceOrientation = [[UIDevice currentDevice] orientation];
     
-    NSLog(@"Orientation - %d", deviceOrientation);
+    NSLog(@"Orientation - %ld", deviceOrientation);
     
     CGFloat finalAngle;
     
