@@ -1,16 +1,20 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="5053" systemVersion="12E55" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="5056" systemVersion="13D65" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none">
     <dependencies>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="3733"/>
     </dependencies>
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="SFFiltersViewController">
             <connections>
-                <outlet property="blurredPhotoImageView" destination="l69-Od-W1f" id="Rr9-QH-zEo"/>
+                <outlet property="changefilterButton" destination="z2h-5h-gUm" id="HHi-fN-Wvu"/>
+                <outlet property="filterButton" destination="0I9-s9-cdk" id="VD8-mf-bCv"/>
+                <outlet property="leftBaseButton" destination="V0x-Ga-UEe" id="DIa-e4-Yi6"/>
                 <outlet property="leftBottomButton" destination="gxP-hz-nTM" id="kGo-MF-2PC"/>
                 <outlet property="leftMidButton" destination="pa2-B8-Qgv" id="G1E-Ha-C6E"/>
                 <outlet property="leftTopButton" destination="duP-kk-7nN" id="Y2f-kr-rkV"/>
                 <outlet property="photoImageView" destination="7fU-Oq-Kee" id="VUE-ZW-V9w"/>
+                <outlet property="readyButton" destination="nZk-bG-deD" id="9ks-qy-4mD"/>
+                <outlet property="rightBaseButton" destination="vZF-QU-0O4" id="aJs-ak-z8D"/>
                 <outlet property="rightBottomButton" destination="a91-0z-O9r" id="U9E-ev-cpk"/>
                 <outlet property="rightMidButton" destination="gnN-jw-AUT" id="eTA-JK-wPh"/>
                 <outlet property="rightTopButton" destination="DA5-4W-agB" id="Aau-f7-8tO"/>
@@ -27,20 +31,19 @@
                 <imageView contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" id="7fU-Oq-Kee">
                     <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
                     <autoresizingMask key="autoresizingMask" flexibleMinX="YES" widthSizable="YES" flexibleMaxX="YES" flexibleMinY="YES" heightSizable="YES" flexibleMaxY="YES"/>
+                    <accessibility key="accessibilityConfiguration">
+                        <accessibilityTraits key="traits" none="YES" button="YES"/>
+                    </accessibility>
                     <gestureRecognizers/>
                     <connections>
                         <outletCollection property="gestureRecognizers" destination="y34-al-SJl" appends="YES" id="6GU-Fv-IkL"/>
                     </connections>
                 </imageView>
-                <imageView userInteractionEnabled="NO" alpha="0.0" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" id="l69-Od-W1f">
-                    <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
-                    <autoresizingMask key="autoresizingMask" flexibleMinX="YES" widthSizable="YES" flexibleMaxX="YES" flexibleMinY="YES" heightSizable="YES" flexibleMaxY="YES"/>
-                </imageView>
                 <button opaque="NO" tag="100" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" id="duP-kk-7nN">
                     <rect key="frame" x="57" y="86" width="70" height="70"/>
                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                     <fontDescription key="fontDescription" type="system" pointSize="15"/>
-                    <state key="normal" image="filter.png">
+                    <state key="normal" image="vanilla_filter.png">
                         <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                     </state>
                     <connections>
@@ -51,7 +54,7 @@
                     <rect key="frame" x="199" y="86" width="70" height="70"/>
                     <autoresizingMask key="autoresizingMask" flexibleMinX="YES" flexibleMaxY="YES"/>
                     <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                    <state key="normal" image="filter.png">
+                    <state key="normal" image="apple_filter.png">
                         <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                     </state>
                     <connections>
@@ -59,10 +62,10 @@
                     </connections>
                 </button>
                 <button opaque="NO" tag="102" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" id="pa2-B8-Qgv">
-                    <rect key="frame" x="57" y="235" width="70" height="70"/>
+                    <rect key="frame" x="57" y="184" width="70" height="70"/>
                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES" flexibleMaxY="YES"/>
                     <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                    <state key="normal" image="filter.png">
+                    <state key="normal" image="banana_filter.png">
                         <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                     </state>
                     <connections>
@@ -70,10 +73,10 @@
                     </connections>
                 </button>
                 <button opaque="NO" tag="103" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" id="gnN-jw-AUT">
-                    <rect key="frame" x="199" y="235" width="70" height="70"/>
+                    <rect key="frame" x="199" y="184" width="70" height="70"/>
                     <autoresizingMask key="autoresizingMask" flexibleMinX="YES" flexibleMinY="YES" flexibleMaxY="YES"/>
                     <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                    <state key="normal" image="filter.png">
+                    <state key="normal" image="grapes_filter.png">
                         <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                     </state>
                     <connections>
@@ -81,10 +84,10 @@
                     </connections>
                 </button>
                 <button opaque="NO" tag="104" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" id="gxP-hz-nTM">
-                    <rect key="frame" x="57" y="379" width="70" height="70"/>
+                    <rect key="frame" x="57" y="282" width="70" height="70"/>
                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                     <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                    <state key="normal" image="filter.png">
+                    <state key="normal" image="lemon_filter.png">
                         <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                     </state>
                     <connections>
@@ -92,18 +95,51 @@
                     </connections>
                 </button>
                 <button opaque="NO" tag="105" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" id="a91-0z-O9r">
-                    <rect key="frame" x="199" y="379" width="70" height="70"/>
+                    <rect key="frame" x="199" y="282" width="70" height="70"/>
                     <autoresizingMask key="autoresizingMask" flexibleMinX="YES" flexibleMinY="YES"/>
                     <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                    <state key="normal" image="filter.png">
+                    <state key="normal" image="mango_filter.png">
                         <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                     </state>
                     <connections>
                         <action selector="filterTapped:" destination="-1" eventType="touchUpInside" id="jL5-Yk-5D1"/>
                     </connections>
                 </button>
+                <button opaque="NO" tag="106" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" id="V0x-Ga-UEe">
+                    <rect key="frame" x="57" y="380" width="70" height="70"/>
+                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
+                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                    <state key="normal" image="orange_filter.png">
+                        <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                    </state>
+                    <connections>
+                        <action selector="filterTapped:" destination="-1" eventType="touchUpInside" id="1cY-cX-vGW"/>
+                    </connections>
+                </button>
+                <button opaque="NO" tag="107" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" id="vZF-QU-0O4">
+                    <rect key="frame" x="199" y="380" width="70" height="70"/>
+                    <autoresizingMask key="autoresizingMask" flexibleMinX="YES" flexibleMinY="YES"/>
+                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                    <state key="normal" image="watermelon_filter.png">
+                        <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                    </state>
+                    <connections>
+                        <action selector="filterTapped:" destination="-1" eventType="touchUpInside" id="KXr-Rg-4dG"/>
+                    </connections>
+                </button>
+                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" id="0I9-s9-cdk">
+                    <rect key="frame" x="62" y="473" width="60" height="60"/>
+                    <autoresizingMask key="autoresizingMask" flexibleMinY="YES"/>
+                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                    <state key="normal" image="filter.png">
+                        <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                    </state>
+                    <connections>
+                        <action selector="imageTapped:" destination="-1" eventType="touchUpInside" id="6Y7-AS-Xgp"/>
+                    </connections>
+                </button>
                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" id="a1R-HO-5Oh">
-                    <rect key="frame" x="130" y="473" width="60" height="60"/>
+                    <rect key="frame" x="204" y="473" width="60" height="60"/>
                     <autoresizingMask key="autoresizingMask" flexibleMinY="YES"/>
                     <fontDescription key="fontDescription" type="system" pointSize="17"/>
                     <state key="normal" image="save.png">
@@ -117,6 +153,29 @@
                     <rect key="frame" x="150" y="274" width="20" height="20"/>
                     <autoresizingMask key="autoresizingMask" flexibleMinX="YES" flexibleMaxX="YES" flexibleMinY="YES" flexibleMaxY="YES"/>
                 </activityIndicatorView>
+                <button opaque="NO" contentMode="center" contentHorizontalAlignment="center" contentVerticalAlignment="center" showsTouchWhenHighlighted="YES" adjustsImageWhenHighlighted="NO" adjustsImageWhenDisabled="NO" lineBreakMode="middleTruncation" id="z2h-5h-gUm">
+                    <rect key="frame" x="123" y="112" width="72" height="83"/>
+                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" heightSizable="YES" flexibleMaxY="YES"/>
+                    <color key="tintColor" red="0.36647742816949447" green="1" blue="0.35195448228588155" alpha="1" colorSpace="calibratedRGB"/>
+                    <size key="titleShadowOffset" width="2" height="2"/>
+                    <state key="normal" image="filter.png">
+                        <color key="titleColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                    </state>
+                    <connections>
+                        <action selector="imageTapped:" destination="-1" eventType="touchUpInside" id="07W-W2-BXn"/>
+                    </connections>
+                </button>
+                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" id="nZk-bG-deD">
+                    <rect key="frame" x="61" y="213" width="200" height="200"/>
+                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                    <fontDescription key="fontDescription" type="system" pointSize="20"/>
+                    <state key="normal" backgroundImage="new_photo">
+                        <color key="titleColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                    </state>
+                    <connections>
+                        <action selector="readyButton:" destination="-1" eventType="touchUpInside" id="JK9-oT-mJx"/>
+                    </connections>
+                </button>
             </subviews>
             <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
             <simulatedStatusBarMetrics key="simulatedStatusBarMetrics"/>
@@ -129,7 +188,16 @@
         </tapGestureRecognizer>
     </objects>
     <resources>
+        <image name="apple_filter.png" width="70" height="70"/>
+        <image name="banana_filter.png" width="70" height="70"/>
         <image name="filter.png" width="70" height="70"/>
+        <image name="grapes_filter.png" width="70" height="70"/>
+        <image name="lemon_filter.png" width="70" height="70"/>
+        <image name="mango_filter.png" width="70" height="70"/>
+        <image name="new_photo" width="200" height="200"/>
+        <image name="orange_filter.png" width="70" height="70"/>
         <image name="save.png" width="70" height="70"/>
+        <image name="vanilla_filter.png" width="70" height="70"/>
+        <image name="watermelon_filter.png" width="70" height="70"/>
     </resources>
 </document>

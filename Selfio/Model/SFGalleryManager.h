@@ -38,7 +38,7 @@ typedef enum {
 
 - (UIImage *)latestImage;
 
-- (void)saveImageWithFilter:(SFFilterType)filterType toAlbumWithCompletionBlock:(void(^)())completionBlock;
+- (void)saveImageWithFilter:(SFFilterType)filterType :(UIImage*)tosave toAlbumWithCompletionBlock:(void(^)())completionBlock;
 
 - (void)flushData;
 

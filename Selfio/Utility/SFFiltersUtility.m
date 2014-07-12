@@ -15,6 +15,11 @@
     GPUImageFilter *filter = nil;
     
     switch (filterType) {
+        case SFFilterTypeVanilla:
+        {
+            filter = [[GPUImageToneCurveFilter alloc] initWithACV:@"Vanilla"];
+        }
+            break;
         case SFFilterTypeApple:
         {
             filter = [[GPUImageToneCurveFilter alloc] initWithACV:@"Apple"];
@@ -54,7 +59,7 @@
         default:
             break;
     }
-    
+    //filter = [[GPUImageToneCurveFilter alloc] initWithACV:@"Apple"];
     return filter;
 }
 

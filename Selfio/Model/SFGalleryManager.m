@@ -206,21 +206,31 @@
     return [self imageAtIndex:0 imageType:SFImageTypeThumbnail];
 }
 
-- (void)saveImageWithFilter:(SFFilterType)filterType toAlbumWithCompletionBlock:(void (^)())completionBlock
+- (void)saveImageWithFilter:(SFFilterType)filterType :(UIImage*)tosave toAlbumWithCompletionBlock:(void (^)())completionBlock
 {
     GPUImageFilter *filter = [SFFiltersUtility filterWithType:filterType];
     
-    UIImage *resultImage = [filter imageByFilteringImage:self.photo.image];
+    
+    
+    UIImage *resultImage = [filter imageByFilteringImage:tosave];
     
     __weak SFGalleryManager *weakSelf = self;
     
-    [self.assetsLibrary writeImageDataToSavedPhotosAlbum:UIImageJPEGRepresentation(resultImage, 0.9) metadata:self.photo.metaData completionBlock:^(NSURL *assetURL, NSError *error) {
+    /*[self.assetsLibrary writeImageDataToSavedPhotosAlbum:UIImageJPEGRepresentation(resultImage, 0.9) metadata:self.photo.metaData completionBlock:^(NSURL *assetURL, NSError *error) {
         
         [self addAssetURL:assetURL toAlbum:GALLERY_NAME completionBlock:^{
             completionBlock();
             [weakSelf flushData];
-        }];
-    }];
+        }]
+     
+    }];*/
+    [self.assetsLibrary writeImageToSavedPhotosAlbum: resultImage.CGImage orientation:resultImage.imageOrientation completionBlock:^(NSURL *assetURL, NSError *error)
+     {
+         //[self addAssetURL:assetURL toAlbum:GALLERY_NAME completionBlock:^{
+             completionBlock();
+             [weakSelf flushData];
+          //}];
+     }];
 }
 
 - (void)flushData

@@ -10,6 +10,7 @@
 #import "GPUImage.h"
 
 typedef NS_ENUM(NSInteger, SFFilterType) {
+    SFFilterTypeVanilla,
     SFFilterTypeApple,
     SFFilterTypeBanana,
     SFFilterTypeGrapes,

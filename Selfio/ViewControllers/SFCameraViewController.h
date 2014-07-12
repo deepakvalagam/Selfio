@@ -7,7 +7,9 @@
 //
 
 #import <UIKit/UIKit.h>
+#import <AssetsLibrary/AssetsLibrary.h>
 
 @interface SFCameraViewController : UIViewController
+@property (nonatomic, strong) ALAssetsLibrary *assetsLibrary;
 
 @end
